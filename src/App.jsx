@@ -516,8 +516,11 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
   const total = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
   const count = cartItems.reduce((s, i) => s + i.qty, 0);
   const offlineCartItems = useMemo(() => Object.entries(offlineCart).filter(([, v]) => v.qty > 0).map(([key, v]) => {
+    if (v.custom) {
+      return { key, ...v, name: v.name || "Новый товар", price: Number(v.price || 0), salePrice: Number(v.salePrice ?? v.price ?? 0), image: null, variantStock: null, custom: true };
+    }
     const product = products.find((p) => p.id === v.productId);
-    return product ? { key, ...v, name: product.name, price: product.price, salePrice: Number(v.salePrice ?? product.price), image: getColorImage(product.color_images, v.color) || product.image_url, variantStock: getVariantStock(product, v.size, v.color) } : null;
+    return product ? { key, ...v, name: product.name, price: product.price, salePrice: Number(v.salePrice ?? product.price), image: getColorImage(product.color_images, v.color) || product.image_url, variantStock: getVariantStock(product, v.size, v.color), custom: false } : null;
   }).filter(Boolean), [offlineCart, products]);
   const offlineTotal = offlineCartItems.reduce((s, i) => s + Number(i.salePrice ?? i.price) * i.qty, 0);
   const offlineCount = offlineCartItems.reduce((s, i) => s + i.qty, 0);
@@ -531,8 +534,37 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
     setOfflineCart((c) => ({ ...c, [key]: { productId: product.id, size, color, qty: current + qty, salePrice: Number(offlineCart[key]?.salePrice ?? product.price) } }));
     // setOfflineSaleProduct(null);
   };
+  const addCustomOfflineItem = (name, price, qty = 1) => {
+    const cleanName = String(name || "").trim();
+    const cleanPrice = Math.max(0, Number(price) || 0);
+    const cleanQty = Math.max(1, Math.floor(Number(qty) || 1));
+    if (!cleanName || cleanPrice <= 0) {
+      setErrorBanner("Введите название товара и цену.");
+      return;
+    }
+    const key = `CUSTOM-${Date.now()}`;
+    setOfflineCart((c) => ({
+      ...c,
+      [key]: {
+        custom: true,
+        name: cleanName,
+        price: cleanPrice,
+        salePrice: cleanPrice,
+        qty: cleanQty,
+        size: "—",
+        color: "—",
+        productId: null,
+      },
+    }));
+  };
+
   const changeOfflineQty = (key, delta) => setOfflineCart((c) => {
     const next = { ...c }; const item = next[key]; if (!item) return c;
+    if (item.custom) {
+      const qty = (item.qty || 0) + delta;
+      if (qty <= 0) delete next[key]; else next[key] = { ...item, qty };
+      return next;
+    }
     const product = products.find((p) => p.id === item.productId); const available = getVariantStock(product, item.size, item.color);
     const max = available === null ? product?.stock || 0 : available;
     const qty = Math.min(max, (item.qty || 0) + delta);
@@ -541,7 +573,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
   const setOfflineSalePrice = (key, rawPrice) => setOfflineCart((c) => {
     const next = { ...c }; const item = next[key]; if (!item) return c;
     const product = products.find((p) => p.id === item.productId);
-    const basePrice = Number(product?.price || 0);
+    const basePrice = item.custom ? Number(item.price || 0) : Number(product?.price || 0);
     const salePrice = Math.max(0, Number(rawPrice) || 0);
     next[key] = { ...item, salePrice: rawPrice === "" ? basePrice : salePrice };
     return next;
@@ -549,6 +581,11 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
 
   const setOfflineQty = (key, rawQty) => setOfflineCart((c) => {
     const next = { ...c }; const item = next[key]; if (!item) return c;
+    if (item.custom) {
+      const qty = Math.max(0, Math.floor(Number(rawQty) || 0));
+      if (qty <= 0) delete next[key]; else next[key] = { ...item, qty };
+      return next;
+    }
     const product = products.find((p) => p.id === item.productId);
     const available = getVariantStock(product, item.size, item.color);
     const max = available === null ? product?.stock || 0 : available;
@@ -730,6 +767,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
     if (!items?.length) return;
     const grouped = {};
     for (const item of items) {
+      if (item.custom) continue;
       const p = products.find((x) => x.id === item.productId);
       if (!p) throw new Error(`Товар с ID ${item.productId} не найден.`);
       const variantStock = getVariantStock(p, item.size, item.color);
@@ -1008,7 +1046,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
           adminAuthed={adminAuthed} pwInput={pwInput} setPwInput={setPwInput} pwError={pwError}
           onLogin={() => { if (pwInput === ADMIN_PASSWORD) { setAdminAuthed(true); setPwError(false); } else setPwError(true); }}
           onLogout={() => { setAdminAuthed(false); setPwInput(""); }} goStore={() => setView("store")} adminTab={adminTab} setAdminTab={setAdminTab}
-          products={products} adjustStock={adjustStock} recordOfflineSale={recordOfflineSale} deleteProduct={deleteProductRemote} updateProduct={editProductRemote} offlineCart={offlineCart} offlineCartItems={offlineCartItems} offlineTotal={offlineTotal} offlineCount={offlineCount} changeOfflineQty={changeOfflineQty} setOfflineQty={setOfflineQty} setOfflineSalePrice={setOfflineSalePrice} removeOfflineItem={removeOfflineItem} addOfflineToCart={addOfflineToCart} offlinePaymentOpen={offlinePaymentOpen} setOfflinePaymentOpen={setOfflinePaymentOpen} offlinePaymentMethod={offlinePaymentMethod} setOfflinePaymentMethod={setOfflinePaymentMethod} offlineCash={offlineCash} setOfflineCash={setOfflineCash} offlineCard={offlineCard} setOfflineCard={setOfflineCard} newProduct={newProduct} setNewProduct={setNewProduct} addProduct={addProduct}
+          products={products} adjustStock={adjustStock} recordOfflineSale={recordOfflineSale} deleteProduct={deleteProductRemote} updateProduct={editProductRemote} offlineCart={offlineCart} offlineCartItems={offlineCartItems} offlineTotal={offlineTotal} offlineCount={offlineCount} changeOfflineQty={changeOfflineQty} setOfflineQty={setOfflineQty} setOfflineSalePrice={setOfflineSalePrice} removeOfflineItem={removeOfflineItem} addOfflineToCart={addOfflineToCart} offlinePaymentOpen={offlinePaymentOpen} setOfflinePaymentOpen={setOfflinePaymentOpen} offlinePaymentMethod={offlinePaymentMethod} setOfflinePaymentMethod={setOfflinePaymentMethod} offlineCash={offlineCash} setOfflineCash={setOfflineCash} offlineCard={offlineCard} setOfflineCard={setOfflineCard} addCustomOfflineItem={addCustomOfflineItem} newProduct={newProduct} setNewProduct={setNewProduct} addProduct={addProduct}
           setProductPhoto={setProductPhoto} setProductColorPhoto={setProductColorPhoto} saveVariantStock={saveVariantStock} uploadNewProductPhoto={uploadNewProductPhoto} uploadingNewPhoto={uploadingNewPhoto}
           newProductColorImages={newProductColorImages} uploadNewProductColorPhoto={uploadNewProductColorPhoto}
           period={period} setPeriod={setPeriod} revenue={revenue} itemsSold={itemsSold} ordersCount={ordersCount} onlineShare={onlineShare} cashTotal={cashTotal} cardTotal={cardTotal}
@@ -2096,6 +2134,54 @@ function OrderStatusModal({ orders, onClose, t }) {
   );
 }
 
+function CustomOfflineItemModal({ onClose, onSubmit }) {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [qty, setQty] = useState(1);
+
+  return (
+    <div className="fixed inset-0 z-[85] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}>
+      <div className="w-full max-w-sm tag-card p-6 relative" style={{ background: "var(--card)" }}>
+        <button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button>
+        <div className="display text-lg font-bold mb-1">Новый товар</div>
+        <div className="text-sm mb-5" style={{ color: "var(--muted)" }}>
+          Товар ещё не добавлен на сайт — он будет записан только в эту офлайн-продажу.
+        </div>
+
+        <div className="mb-3">
+          <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Название товара</label>
+          <input autoFocus value={name} onChange={(e) => setName(e.target.value)}
+            className="w-full px-3 py-2 mt-1" placeholder="Например: Новая рубашка" />
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mb-5">
+          <div>
+            <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Цена, сум</label>
+            <input type="number" min="0" value={price} onChange={(e) => setPrice(e.target.value)}
+              className="w-full px-3 py-2 mt-1" placeholder="250000" />
+          </div>
+          <div>
+            <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Количество</label>
+            <input type="number" min="1" value={qty} onChange={(e) => setQty(e.target.value)}
+              className="w-full px-3 py-2 mt-1" />
+          </div>
+        </div>
+
+        <div className="flex gap-2">
+          <button onClick={onClose} className="btn-ghost flex-1 py-2.5">Отмена</button>
+          <button
+            disabled={!name.trim() || Number(price) <= 0 || Number(qty) < 1}
+            onClick={() => onSubmit(name, price, qty)}
+            className="btn-primary flex-1 py-2.5 disabled:opacity-40"
+          >
+            Добавить
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function OfflineSaleModal({ product, onClose, onSubmit, t }) {
   const productSizes = (product.size || "").split(",").map((x) => x.trim()).filter(Boolean);
   const productColors = (product.color || "").split(",").map((x) => x.trim()).filter(Boolean);
@@ -2195,7 +2281,7 @@ function EditProductModal({ product, onClose, onSave, t }) {
 
 function AdminView(props) {
   const { lang, setLang, t, adminAuthed, pwInput, setPwInput, pwError, onLogin, onLogout, goStore, adminTab, setAdminTab,
-    products, adjustStock, recordOfflineSale, deleteProduct, updateProduct, newProduct, setNewProduct, addProduct, offlineCart, offlineCartItems, offlineTotal, offlineCount, changeOfflineQty, setOfflineQty, setOfflineSalePrice, removeOfflineItem, addOfflineToCart, offlinePaymentOpen, setOfflinePaymentOpen, offlinePaymentMethod, setOfflinePaymentMethod, offlineCash, setOfflineCash, offlineCard, setOfflineCard,
+    products, adjustStock, recordOfflineSale, deleteProduct, updateProduct, newProduct, setNewProduct, addProduct, offlineCart, offlineCartItems, offlineTotal, offlineCount, changeOfflineQty, setOfflineQty, setOfflineSalePrice, removeOfflineItem, addOfflineToCart, addCustomOfflineItem, offlinePaymentOpen, setOfflinePaymentOpen, offlinePaymentMethod, setOfflinePaymentMethod, offlineCash, setOfflineCash, offlineCard, setOfflineCard,
     setProductPhoto, setProductColorPhoto, saveVariantStock, uploadNewProductPhoto, uploadingNewPhoto,
     newProductColorImages, uploadNewProductColorPhoto,
     period, setPeriod, revenue, itemsSold, ordersCount, avgCheck, onlineShare, cashTotal, cardTotal, chartData, topProducts,
@@ -2204,9 +2290,34 @@ function AdminView(props) {
   const [testResult, setTestResult] = useState(null);
   const [localCfg, setLocalCfg] = useState(config);
   const [offlineSaleProduct, setOfflineSaleProduct] = useState(null);
+  const [customOfflineOpen, setCustomOfflineOpen] = useState(false);
+  const [offlineCategory, setOfflineCategory] = useState("all");
+  const [offlineQuery, setOfflineQuery] = useState("");
   const [variantStockProduct, setVariantStockProduct] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
   useEffect(() => setLocalCfg(config), [config]);
+
+  const offlineSubcategories = useMemo(() => {
+    const values = products
+      .map((p) => String(p.subcategory || "").trim())
+      .filter(Boolean);
+    return [...new Set(values)];
+  }, [products]);
+
+  const filteredOfflineProducts = useMemo(() => {
+    const q = offlineQuery.trim().toLowerCase();
+    return products.filter((p) => {
+      const matchesCategory =
+        offlineCategory === "all" ||
+        p.category === offlineCategory ||
+        String(p.subcategory || "").trim() === offlineCategory;
+      const matchesSearch =
+        !q ||
+        String(p.name || "").toLowerCase().includes(q) ||
+        String(p.subcategory || "").toLowerCase().includes(q);
+      return matchesCategory && matchesSearch;
+    });
+  }, [products, offlineCategory, offlineQuery]);
 
   if (!adminAuthed) {
     return (
@@ -2289,6 +2400,16 @@ function AdminView(props) {
         </>
       )}
 
+      {customOfflineOpen && (
+        <CustomOfflineItemModal
+          onClose={() => setCustomOfflineOpen(false)}
+          onSubmit={(name, price, qty) => {
+            addCustomOfflineItem(name, price, qty);
+            setCustomOfflineOpen(false);
+          }}
+        />
+      )}
+
       {offlineSaleProduct && (
         <OfflineSaleModal
           t={t}
@@ -2303,37 +2424,35 @@ function AdminView(props) {
 
       {adminTab === "offline" && (
         <>
-          <div className="mb-5 flex items-start justify-between gap-4">
-            <div>
-              <div className="display text-xl font-bold">{t("Офлайн продажи")}</div>
-              <div className="text-sm mt-1" style={{ color: "var(--muted)" }}>Добавляйте несколько товаров в одну корзину, затем выберите способ оплаты.</div>
-            </div>
-            <button disabled={!offlineCount} onClick={() => setOfflinePaymentOpen(true)} className="btn-primary px-4 py-2.5 text-sm font-medium flex items-center gap-2 disabled:opacity-40"><ShoppingBag size={15} /> Корзина · {offlineCount}</button>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-7">
-            {products.map((p) => {
-              const firstColor = (p.color || "").split(",").map((c) => c.trim()).filter(Boolean)[0];
-              const image = (firstColor ? getColorImage(p.color_images, firstColor) : null) || p.image_url;
-              return (
-                <div key={p.id} className="tag-card overflow-hidden">
-                  <div className="aspect-[4/5] overflow-hidden" style={{ background: "var(--line)" }}>
-                    {image ? <img src={image} alt={p.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center"><Package size={32} style={{ color: "var(--muted)" }} /></div>}
-                  </div>
-                  <div className="p-3">
-                    <div className="font-medium text-sm truncate">{p.name}</div>
-                    <div className="mono text-sm mt-1" style={{ color: "var(--accent)" }}>{formatSum(p.price)} сум</div>
-                    <div className="text-xs mt-1 mb-3" style={{ color: "var(--muted)" }}>Остаток: {p.stock}</div>
-                    <button onClick={() => setOfflineSaleProduct(p)} disabled={p.stock <= 0} className="btn-primary w-full py-2.5 text-sm font-medium flex items-center justify-center gap-1.5 disabled:opacity-40"><Plus size={14} /> Добавить в корзину</button>
+          <div className="sticky top-0 z-40 mb-5 -mx-2 px-2 pt-2 pb-3" style={{ background: "var(--bg)" }}>
+            <div className="tag-card p-3 flex items-center justify-between gap-3" style={{ borderColor: offlineCount ? "var(--accent)" : "var(--line)", boxShadow: offlineCount ? "0 8px 24px rgba(0,0,0,0.18)" : "none" }}>
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--accent)", color: "#050505" }}>
+                  <ShoppingBag size={17} />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold">Текущая корзина</div>
+                  <div className="text-xs mono" style={{ color: "var(--muted)" }}>
+                    {offlineCount ? `${offlineCount} товар(ов) · ${formatSum(offlineTotal)} сум` : "Корзина пуста"}
                   </div>
                 </div>
-              );
-            })}
+              </div>
+              <button disabled={!offlineCount} onClick={() => setOfflinePaymentOpen(true)} className="btn-primary px-4 py-2.5 text-sm font-medium flex items-center gap-2 disabled:opacity-40 shrink-0">
+                <ShoppingBag size={15} /> Оформить · {offlineCount}
+              </button>
+            </div>
           </div>
+
+          <button
+            onClick={() => setCustomOfflineOpen(true)}
+            className="btn-ghost w-full py-3 mb-5 flex items-center justify-center gap-2"
+          >
+            <Plus size={15} /> Новый товар без добавления на сайт
+          </button>
 
           {offlineCartItems.length > 0 && (
             <div className="tag-card p-4 mb-5">
-              <div className="text-sm font-medium mb-3">Текущая корзина</div>
+              <div className="text-sm font-medium mb-3">Товары в корзине</div>
               {offlineCartItems.map((i) => {
                 const max = i.variantStock === null ? undefined : i.variantStock;
                 return (
@@ -2388,30 +2507,159 @@ function AdminView(props) {
             </div>
           )}
 
-          <div className="tag-card p-4">
-            <div className="text-sm font-medium mb-3">История офлайн продаж</div>
-            {orders.filter(o => o.source === "offline").length === 0 ? (
-              <div className="text-xs py-5 text-center" style={{ color: "var(--muted)" }}>Нет продаж за период</div>
-            ) : (
-              <div className="space-y-2">
-                {orders.filter(o => o.source === "offline").slice(0, 30).map(o => (
-                  <div key={o.id} className="adm-row py-2.5">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <div className="text-sm">№ {o.id} · {o.items?.length || 0} товар(ов)</div>
-                        <div className="text-xs" style={{ color: "var(--muted)" }}>
-                          {new Date(o.date).toLocaleString("ru-RU")} · {o.payment?.method === "mixed" ? `Карта ${formatSum(o.payment.card)} + наличные ${formatSum(o.payment.cash)}` : o.payment?.method === "card" ? "Карта" : "Наличные"}
-                        </div>
-                      </div>
-                      <div className="mono text-sm" style={{ color: "var(--accent)" }}>{formatSum(o.total)} сум</div>
-                    </div>
-                    <div className="text-xs mt-1" style={{ color: "var(--muted)" }}>
-                      {o.items?.map(i => `${i.name} (${i.size}, ${i.color}) × ${i.qty}`).join(", ")}
-                    </div>
-                  </div>
+
+          <div className="tag-card p-4 mb-5">
+            <div className="flex flex-col md:flex-row gap-3">
+              <div className="relative w-full md:w-[150px] md:flex-none">
+                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "var(--muted)" }} />
+                <input
+                  type="text"
+                  value={offlineQuery}
+                  onChange={(e) => setOfflineQuery(e.target.value)}
+                  placeholder={t("Поиск товара")}
+                  className="w-full pl-9 pr-3 py-2.5 text-sm"
+                />
+                {offlineQuery && (
+                  <button
+                    onClick={() => setOfflineQuery("")}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    <X size={14} />
+                  </button>
+                )}
+              </div>
+              <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0">
+                <button
+                  onClick={() => setOfflineCategory("all")}
+                  className={`nav-pill px-3 py-2 text-xs shrink-0 ${offlineCategory === "all" ? "active" : ""}`}
+                >
+                  {t("Все")}
+                </button>
+
+                <button
+                  onClick={() => setOfflineCategory("shoes")}
+                  className={`nav-pill px-3 py-2 text-xs shrink-0 ${offlineCategory === "shoes" ? "active" : ""}`}
+                >
+                  {t("Обувь")}
+                </button>
+                {offlineSubcategories.map((sub) => (
+                  <button
+                    key={sub}
+                    onClick={() => setOfflineCategory(sub)}
+                    className={`nav-pill px-3 py-2 text-xs shrink-0 ${offlineCategory === sub ? "active" : ""}`}
+                  >
+                    {t(sub)}
+                  </button>
                 ))}
               </div>
-            )}
+            </div>
+            <div className="text-xs mt-3" style={{ color: "var(--muted)" }}>
+              Найдено: {filteredOfflineProducts.length} товар(ов)
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-7">
+            {filteredOfflineProducts.length === 0 ? (
+              <div className="col-span-full tag-card p-10 text-center text-sm" style={{ color: "var(--muted)" }}>
+                {t("Ничего не найдено по запросу")}
+              </div>
+            ) : filteredOfflineProducts.map((p) => {
+              const firstColor = (p.color || "").split(",").map((c) => c.trim()).filter(Boolean)[0];
+              const image = (firstColor ? getColorImage(p.color_images, firstColor) : null) || p.image_url;
+              return (
+                <div key={p.id} className="tag-card overflow-hidden">
+                  <div className="aspect-[4/5] overflow-hidden" style={{ background: "var(--line)" }}>
+                    {image ? <img src={image} alt={p.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center"><Package size={32} style={{ color: "var(--muted)" }} /></div>}
+                  </div>
+                  <div className="p-3">
+                    <div className="font-medium text-sm truncate">{p.name}</div>
+                    <div className="mono text-sm mt-1" style={{ color: "var(--accent)" }}>{formatSum(p.price)} сум</div>
+                    <div className="text-xs mt-1 mb-3" style={{ color: "var(--muted)" }}>Остаток: {p.stock}</div>
+                    <button onClick={() => setOfflineSaleProduct(p)} disabled={p.stock <= 0} className="btn-primary w-full py-2.5 text-sm font-medium flex items-center justify-center gap-1.5 disabled:opacity-40"><Plus size={14} /> Добавить в корзину</button>
+                  </div>
+                </div>
+              );
+            })}</div>
+
+          <div className="tag-card p-4">
+            <div className="text-sm font-medium mb-4">История офлайн продаж</div>
+            {(() => {
+              const offlineOrders = orders
+                .filter(o => o.source === "offline")
+                .slice(0, 60);
+
+              if (offlineOrders.length === 0) {
+                return <div className="text-xs py-5 text-center" style={{ color: "var(--muted)" }}>Нет продаж за период</div>;
+              }
+
+              const grouped = offlineOrders.reduce((acc, o) => {
+                const d = new Date(o.date || o.created_at);
+                const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+                if (!acc[key]) acc[key] = [];
+                acc[key].push(o);
+                return acc;
+              }, {});
+
+              const dateKeys = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
+              return (
+                <div className="space-y-5">
+                  {dateKeys.map(dateKey => {
+                    const dayOrders = grouped[dateKey];
+                    const [year, month, day] = dateKey.split("-");
+                    const dayTotal = dayOrders.reduce((sum, o) => sum + Number(o.total || 0), 0);
+
+                    return (
+                      <div key={dateKey}>
+                        <div
+                          className="flex items-center justify-between gap-3 px-3 py-2.5 mb-2 rounded-lg"
+                          style={{
+                            background: "var(--bg)",
+                            border: "1px solid var(--line)"
+                          }}
+                        >
+                          <div>
+                            <div className="font-semibold text-sm">
+                              {day}.{month}.{year}
+                            </div>
+                            <div className="text-[11px]" style={{ color: "var(--muted)" }}>
+                              {dayOrders.length} продаж{dayOrders.length === 1 ? "а" : dayOrders.length < 5 ? "и" : ""} за день
+                            </div>
+                          </div>
+                          <div className="mono text-sm font-semibold" style={{ color: "var(--accent)" }}>
+                            {formatSum(dayTotal)} сум
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          {dayOrders.map(o => (
+                            <div key={o.id} className="adm-row py-2.5">
+                              <div className="flex items-center justify-between gap-3">
+                                <div>
+                                  <div className="text-sm">№ {o.id} · {o.items?.length || 0} товар(ов)</div>
+                                  <div className="text-xs" style={{ color: "var(--muted)" }}>
+                                    {new Date(o.date || o.created_at).toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" })}
+                                    {" · "}
+                                    {o.payment?.method === "mixed"
+                                      ? `Карта ${formatSum(o.payment.card)} + наличные ${formatSum(o.payment.cash)}`
+                                      : o.payment?.method === "card" ? "Карта" : "Наличные"}
+                                  </div>
+                                </div>
+                                <div className="mono text-sm" style={{ color: "var(--accent)" }}>{formatSum(o.total)} сум</div>
+                              </div>
+                              <div className="text-xs mt-1" style={{ color: "var(--muted)" }}>
+                                {o.items?.map(i => `${i.name}${i.size !== "—" ? ` (${i.size}, ${i.color})` : ""} × ${i.qty}`).join(", ")}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
           </div>
         </>
       )}
