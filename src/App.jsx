@@ -18,7 +18,7 @@ const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 // Telegram Chat ID: ID чата владельца
 // Номер карты: карта, на которую клиент переводит оплату.
 const TELEGRAM_TOKEN = "8913280630:AAHULsvFvcDJHoknMTe3TiXHqlIcQJXP3Jk";
-const TELEGRAM_CHAT_ID = "315881723";
+const TELEGRAM_CHAT_ID = "[315881723], [807238018]";
 const CARD_NUMBER = "5614688719547795";
 // =============================================================
 const GRADIENTS = [["#C7A64A", "#9C4A3F"], ["#C7A64A", "#6B7F5E"], ["#3E4C59", "#5A6B78"], ["#C7A64A", "#A97B4F"]];
@@ -73,11 +73,19 @@ const SIZE_CHART = {
   shoes: [{ size: "36", foot: "23.0" }, { size: "37", foot: "23.5" }, { size: "38", foot: "24.5" }, { size: "39", foot: "25.0" }, { size: "40", foot: "25.5" }, { size: "41", foot: "26.5" }, { size: "42", foot: "27.0" }, { size: "43", foot: "27.5" }, { size: "44", foot: "28.5" }, { size: "45", foot: "29.0" }],
 };
 const ADMIN_PASSWORD = "parij2024";
+
+// Пароли для отдельных периодов статистики.
+// Измени значения ниже на свои пароли.
+const STATS_PERIOD_PASSWORDS = {
+  week: "week2024",
+  month: "month2024",
+  year: "year2024",
+};
 const MONTH_LABELS = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
 const WEEKDAY_LABELS = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 const PERIODS = [{ id: "day", label: "День" }, { id: "week", label: "Неделя" }, { id: "month", label: "Месяц" }, { id: "year", label: "Год" }];
 const STATUS_META = {
-  new: { label: "Ждёт оплаты", color: "#C7A64A", icon: Bell },
+  new: { label: "На проверке", color: "#C7A64A", icon: Bell },
   processing: { label: "В обработке", color: "#C7A64A", icon: Clock },
   delivered: { label: "Доставлен", color: "#C7A64A", icon: CheckCircle2 },
   cancelled: { label: "Отменён", color: "#C7A64A", icon: XCircle },
@@ -143,7 +151,7 @@ const TRANSLATIONS = {
     "Янв": "Янв", "Фев": "Фев", "Мар": "Мар", "Апр": "Апр", "Май": "Май", "Июн": "Июн", "Июл": "Июл", "Авг": "Авг", "Сен": "Сен", "Окт": "Окт", "Ноя": "Ноя", "Дек": "Дек",
     "Вс": "Вс", "Пн": "Пн", "Вт": "Вт", "Ср": "Ср", "Чт": "Чт", "Пт": "Пт", "Сб": "Сб",
     "День": "День", "Неделя": "Неделя", "Месяц": "Месяц", "Год": "Год",
-    "Ждёт оплаты": "Ждёт оплаты", "В обработке": "В обработке", "Доставлен": "Доставлен", "Отменён": "Отменён",
+    "Ждёт оплаты": "Ждёт оплаты", "На проверке": "На проверке", "В обработке": "В обработке", "Доставлен": "Доставлен", "Отменён": "Отменён",
     "Все": "Все", "Одежда": "Одежда", "Обувь": "Обувь", "Футболки": "Футболки", "Рубашки": "Рубашки", "Ветровки": "Ветровки", "Куртки": "Куртки", "Брюки": "Брюки", "Джинсы": "Джинсы", "Худи / Свитера": "Худи / Свитера", "Кроссовки": "Кроссовки", "Туфли": "Туфли", "Ботинки": "Ботинки", "Сандалии": "Сандалии", "Без типа": "Без типа", "Тип товара": "Тип товара", "Поиск товара": "Поиск товара", "Нет в наличии": "Нет в наличии",
     "Ваше имя": "Ваше имя", "Город, улица, дом": "Город, улица, дом", "Отправляем…": "Отправляем…", "Я оплатил(а)": "Я оплатил(а)",
     "Выберите размер и цвет": "Выберите размер и цвет", "Добавить в корзину": "Добавить в корзину", "Комментарий": "Комментарий", "Пароль": "Пароль",
@@ -167,7 +175,7 @@ const TRANSLATIONS = {
     "Заказы не найдены": "Заказы не найдены", "Записать продажу и списать со склада": "Записать продажу и списать со склада",
     "Paris Clothes · вход для администратора": "Paris Clothes · вход для администратора", "Неверный пароль": "Неверный пароль", "Войти": "Войти",
     "← Вернуться в магазин": "← Вернуться в магазин", "Обновить": "Обновить", "В магазин": "В магазин", "Выйти": "Выйти", "Статистика": "Статистика",
-    "Заказы": "Заказы", "Товары": "Товары", "Настройки": "Настройки", "Заказов": "Заказов", "Товаров продано": "Товаров продано", "Средний чек": "Средний чек", "Наличные": "Наличные", "Карта": "Карта",
+    "Заказы": "Заказы", "Заказы с сайта": "Заказы с сайта", "Заказы из магазина": "Заказы из магазина", "Товары": "Товары", "Настройки": "Настройки", "Заказов": "Заказов", "Товаров продано": "Товаров продано", "Средний чек": "Средний чек", "Наличные": "Наличные", "Карта": "Карта",
     "Динамика выручки": "Динамика выручки", "Топ товаров по выручке": "Топ товаров по выручке", "Нет продаж за период": "Нет продаж за период",
     "Онлайн / офлайн": "Онлайн / офлайн", "Доля продаж на сайте за выбранный период": "Доля продаж на сайте за выбранный период",
     "Быстрая корректировка остатков": "Быстрая корректировка остатков", "Заказов не найдено": "Заказов не найдено", "Удалить (ошибка)": "Удалить (ошибка)",
@@ -184,7 +192,7 @@ const TRANSLATIONS = {
     "Янв": "Yan", "Фев": "Fev", "Мар": "Mar", "Апр": "Apr", "Май": "May", "Июн": "Iyun", "Июл": "Iyul", "Авг": "Avg", "Сен": "Sen", "Окт": "Okt", "Ноя": "Noy", "Дек": "Dek",
     "Вс": "Ya", "Пн": "Du", "Вт": "Se", "Ср": "Ch", "Чт": "Pa", "Пт": "Ju", "Сб": "Sh",
     "День": "Kun", "Неделя": "Hafta", "Месяц": "Oy", "Год": "Yil",
-    "Ждёт оплаты": "To‘lov kutilmoqda", "В обработке": "Jarayonda", "Доставлен": "Yetkazildi", "Отменён": "Bekor qilingan",
+    "Ждёт оплаты": "To‘lov kutilmoqda", "На проверке": "Tekshiruvda", "В обработке": "Jarayonda", "Доставлен": "Yetkazildi", "Отменён": "Bekor qilingan",
     "Все": "Barchasi", "Одежда": "Kiyim", "Обувь": "Oyoq kiyim", "Футболки": "Futbolkalar", "Рубашки": "Ko‘ylaklar", "Ветровки": "Vetrovkalar", "Куртки": "Kurtkalar", "Брюки": "Shimlar", "Джинсы": "Jinsilar", "Худи / Свитера": "Hudi / Sviterlar", "Кроссовки": "Krossovkalar", "Туфли": "Tuflilar", "Ботинки": "Botinkalar", "Сандалии": "Sandalilar", "Без типа": "Turi yo‘q", "Тип товара": "Mahsulot turi", "Поиск товара": "Mahsulot qidirish", "Нет в наличии": "Mavjud emas",
     "Ваше имя": "Ismingiz", "Город, улица, дом": "Shahar, ko‘cha, uy", "Отправляем…": "Yuborilmoqda…", "Я оплатил(а)": "To‘ladim",
     "Выберите размер и цвет": "O‘lcham va rangni tanlang", "Добавить в корзину": "Savatga qo‘shish", "Комментарий": "Izoh", "Пароль": "Parol",
@@ -208,7 +216,7 @@ const TRANSLATIONS = {
     "Заказы не найдены": "Buyurtmalar topilmadi", "Записать продажу и списать со склада": "Sotuvni yozish va ombordan ayirish",
     "Paris Clothes · вход для администратора": "Paris Clothes · administrator kirishi", "Неверный пароль": "Parol noto‘g‘ri", "Войти": "Kirish",
     "← Вернуться в магазин": "← Do‘konga qaytish", "Обновить": "Yangilash", "В магазин": "Do‘konga", "Выйти": "Chiqish", "Статистика": "Statistika",
-    "Заказы": "Buyurtmalar", "Товары": "Mahsulotlar", "Настройки": "Sozlamalar", "Заказов": "Buyurtmalar", "Товаров продано": "Sotilgan mahsulotlar", "Средний чек": "O‘rtacha chek", "Наличные": "Naqd pul", "Карта": "Karta",
+    "Заказы": "Buyurtmalar", "Заказы с сайта": "Saytdan buyurtmalar", "Заказы из магазина": "Do‘kondagi buyurtmalar", "Товары": "Mahsulotlar", "Настройки": "Sozlamalar", "Заказов": "Buyurtmalar", "Товаров продано": "Sotilgan mahsulotlar", "Средний чек": "O‘rtacha chek", "Наличные": "Naqd pul", "Карта": "Karta",
     "Динамика выручки": "Tushum dinamikasi", "Топ товаров по выручке": "Tushum bo‘yicha top mahsulotlar", "Нет продаж за период": "Bu davrda sotuvlar yo‘q",
     "Онлайн / офлайн": "Onlayn / oflayn", "Доля продаж на сайте за выбранный период": "Tanlangan davrdagi saytdagi sotuvlar ulushi",
     "Быстрая корректировка остатков": "Qoldiqni tezkor o‘zgartirish", "Удалить (ошибка)": "O‘chirish (xato)",
@@ -273,13 +281,17 @@ function makeT(lang) {
 
 
 
-async function sb(config, path, { method = "GET", body } = {}) {
+async function sb(config, path, { method = "GET", body, prefer } = {}) {
   const headers = { apikey: config.key, Authorization: `Bearer ${config.key}`, "Content-Type": "application/json" };
-  if (method !== "GET") headers["Prefer"] = "return=representation";
-  const res = await fetch(`${config.url.replace(/\/$/, "")}/rest/v1/${path}`, {
+  if (method !== "GET") headers["Prefer"] = prefer || "return=representation";
+  const url = `${config.url.replace(/\/$/, "")}/rest/v1/${path}`;
+  const res = await fetch(url, {
     method, headers, body: body !== undefined ? JSON.stringify(body) : undefined,
   });
-  if (!res.ok) { const t = await res.text(); throw new Error(t.slice(0, 200) || `Ошибка ${res.status}`); }
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(`Supabase ${res.status} (${method} ${path}): ${t.slice(0, 500) || `Ошибка ${res.status}`}`);
+  }
   const text = await res.text();
   return text ? JSON.parse(text) : null;
 }
@@ -295,43 +307,197 @@ async function uploadPhoto(config, file) {
   return `${config.url.replace(/\/$/, "")}/storage/v1/object/public/product-photos/${filename}`;
 }
 
+function getTelegramChatIds(chatIdValue) {
+  return String(chatIdValue || "")
+    .split(",")
+    .map((id) => id.replace(/[\[\]]/g, "").trim())
+    .filter(Boolean);
+}
+
 async function sendTelegram(settings, text) {
-  if (!settings?.telegramToken || !settings?.telegramChatId) return { ok: false, error: "Не заполнены токен бота или chat ID" };
+  if (!settings?.telegramToken || !settings?.telegramChatId) {
+    return { ok: false, error: "Не заполнены токен бота или chat ID" };
+  }
+
+  const chatIds = getTelegramChatIds(settings.telegramChatId);
+  if (!chatIds.length) {
+    return { ok: false, error: "Не указан корректный Telegram chat ID" };
+  }
+
   try {
-    const res = await fetch(`https://api.telegram.org/bot${settings.telegramToken}/sendMessage`, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: settings.telegramChatId, text }),
-    });
-    const data = await res.json();
-    return data.ok ? { ok: true } : { ok: false, error: data.description || "Telegram вернул ошибку" };
-  } catch (e) { return { ok: false, error: "Не удалось связаться с Telegram (проверьте токен и сеть)" }; }
+    for (const chatId of chatIds) {
+      const res = await fetch(
+        `https://api.telegram.org/bot${settings.telegramToken}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: chatId, text }),
+        }
+      );
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!data.ok) {
+        return {
+          ok: false,
+          error: `Telegram для чата ${chatId}: ${data.description || `ошибка ${res.status}`
+            }`,
+        };
+      }
+    }
+
+    return { ok: true };
+  } catch (e) {
+    return {
+      ok: false,
+      error: e?.message || "Не удалось связаться с Telegram",
+    };
+  }
 }
 
 async function sendTelegramPhoto(settings, file, caption = "") {
   if (!settings?.telegramToken || !settings?.telegramChatId) {
     return { ok: false, description: "Не заполнены токен бота или chat ID" };
   }
+
   if (!file) {
     return { ok: false, description: "Скриншот оплаты не выбран" };
   }
 
+  const chatIds = getTelegramChatIds(settings.telegramChatId);
+  if (!chatIds.length) {
+    return { ok: false, description: "Не указан корректный Telegram chat ID" };
+  }
+
   try {
-    const formData = new FormData();
-    formData.append("chat_id", settings.telegramChatId);
-    formData.append("photo", file);
-    if (caption) formData.append("caption", caption);
+    for (const chatId of chatIds) {
+      const formData = new FormData();
+      formData.append("chat_id", chatId);
+      formData.append("photo", file, file.name || "payment-receipt.jpg");
 
-    const res = await fetch(
-      `https://api.telegram.org/bot${settings.telegramToken}/sendPhoto`,
-      { method: "POST", body: formData }
-    );
+      if (caption) {
+        formData.append("caption", caption);
+      }
 
-    const data = await res.json().catch(() => ({}));
-    return data.ok
-      ? { ok: true, result: data.result }
-      : { ok: false, description: data.description || `Telegram вернул ошибку ${res.status}` };
+      const res = await fetch(
+        `https://api.telegram.org/bot${settings.telegramToken}/sendPhoto`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!data.ok) {
+        return {
+          ok: false,
+          description: `Telegram для чата ${chatId}: ${data.description || `ошибка ${res.status}`
+            }`,
+        };
+      }
+    }
+
+    return { ok: true };
   } catch (e) {
-    return { ok: false, description: e?.message || "Не удалось отправить скриншот в Telegram" };
+    return {
+      ok: false,
+      description: e?.message || "Не удалось отправить скриншот в Telegram",
+    };
+  }
+}
+
+// Отправляет чек и фото товаров одним альбомом в Telegram.
+// Первый элемент альбома — чек с полной подписью заказа, далее идут фото товаров.
+async function sendTelegramOrderMedia(settings, receiptFile, productPhotos = [], caption = "") {
+  if (!settings?.telegramToken || !settings?.telegramChatId) {
+    return { ok: false, description: "Не заполнены токен бота или chat ID" };
+  }
+  if (!receiptFile) {
+    return { ok: false, description: "Скриншот оплаты не выбран" };
+  }
+
+  const chatIds = getTelegramChatIds(settings.telegramChatId);
+  if (!chatIds.length) {
+    return { ok: false, description: "Не указан корректный Telegram chat ID" };
+  }
+
+  const photos = [...new Set((productPhotos || []).filter(Boolean))].slice(0, 9);
+
+  try {
+    for (const chatId of chatIds) {
+      const media = [
+        { type: "photo", media: "attach://payment_receipt", ...(caption ? { caption } : {}) },
+        ...photos.map((url) => ({ type: "photo", media: url })),
+      ];
+
+      const formData = new FormData();
+      formData.append("chat_id", chatId);
+      formData.append("media", JSON.stringify(media));
+      formData.append(
+        "payment_receipt",
+        receiptFile,
+        receiptFile.name || "payment-receipt.jpg"
+      );
+
+      const res = await fetch(
+        `https://api.telegram.org/bot${settings.telegramToken}/sendMediaGroup`,
+        { method: "POST", body: formData }
+      );
+
+      const data = await res.json().catch(() => ({}));
+
+      if (data.ok) continue;
+
+      // Если альбом не отправился, отправляем чек отдельно.
+      const singlePhotoResult = await sendTelegramPhoto(
+        { ...settings, telegramChatId: chatId },
+        receiptFile,
+        caption
+      );
+
+      if (!singlePhotoResult.ok) {
+        return {
+          ok: false,
+          description:
+            data.description ||
+            singlePhotoResult.description ||
+            `Telegram для чата ${chatId}: ошибка ${res.status}`,
+        };
+      }
+
+      // И затем фото товаров.
+      for (const url of photos) {
+        const photoRes = await fetch(
+          `https://api.telegram.org/bot${settings.telegramToken}/sendPhoto`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: chatId, photo: url }),
+          }
+        );
+
+        const photoData = await photoRes.json().catch(() => ({}));
+
+        if (!photoData.ok) {
+          return {
+            ok: false,
+            description:
+              `Telegram для чата ${chatId}: ` +
+              (photoData.description ||
+                "Не удалось отправить фото товара в Telegram"),
+          };
+        }
+      }
+    }
+
+    return { ok: true };
+  } catch (e) {
+    return {
+      ok: false,
+      description:
+        e?.message || "Не удалось отправить чек и фото товара в Telegram",
+    };
   }
 }
 
@@ -439,6 +605,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
   const [query, setQuery] = useState("");
   const [cart, setCart] = useState({});
   const [cartOpen, setCartOpen] = useState(false);
+  const SERVICE_FEE_PER_ITEM = 10000;
   const [offlineCart, setOfflineCart] = useState({});
   const [offlinePaymentOpen, setOfflinePaymentOpen] = useState(false);
   const [offlinePaymentMethod, setOfflinePaymentMethod] = useState("cash");
@@ -482,8 +649,9 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
   const [pwInput, setPwInput] = useState("");
   const [pwError, setPwError] = useState(false);
   const [adminTab, setAdminTab] = useState("stats");
-  const [period, setPeriod] = useState("week");
+  const [period, setPeriod] = useState("day");
   const [orderFilter, setOrderFilter] = useState("all");
+  const [orderSourceTab, setOrderSourceTab] = useState("online");
   const [newProduct, setNewProduct] = useState({ name: "", category: "clothing", subcategory: "Футболки", price: "", stock: "", size: "", color: "", image_url: "", color_images: {} });
   const [newProductColorImages, setNewProductColorImages] = useState({});
   const [notifLog, setNotifLog] = useState([]);
@@ -511,10 +679,18 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
   const filtered = useMemo(() => products.filter((p) => (category === "all" || p.category === category) && (subcategory === "all" || p.subcategory === subcategory) && p.name.toLowerCase().includes(query.toLowerCase())), [products, category, subcategory, query]);
   const cartItems = useMemo(() => Object.entries(cart).filter(([, v]) => v.qty > 0).map(([key, v]) => {
     const product = products.find((p) => p.id === v.productId);
-    return product ? { key, ...v, name: product.name, price: product.price } : null;
+    return product ? {
+      key,
+      ...v,
+      name: product.name,
+      price: product.price,
+      image: getColorImage(product.color_images, v.color) || product.image_url || null,
+    } : null;
   }).filter(Boolean), [cart, products]);
-  const total = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
+  const goodsSubtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
   const count = cartItems.reduce((s, i) => s + i.qty, 0);
+  const serviceFeeTotal = count * SERVICE_FEE_PER_ITEM;
+  const total = goodsSubtotal + serviceFeeTotal;
   const offlineCartItems = useMemo(() => Object.entries(offlineCart).filter(([, v]) => v.qty > 0).map(([key, v]) => {
     if (v.custom) {
       return { key, ...v, name: v.name || "Новый товар", price: Number(v.price || 0), salePrice: Number(v.salePrice ?? v.price ?? 0), image: null, variantStock: null, custom: true };
@@ -664,10 +840,14 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
       // Заказ пока НЕ создаём в Supabase. Сначала показываем номер карты
       // и просим клиента оплатить и прикрепить скриншот.
       const now = new Date();
-      const orderId = `ORD-${now.getTime().toString().slice(-8)}`;
+      const uniquePart = (globalThis.crypto?.randomUUID?.() || `${now.getTime()}-${Math.random().toString(36).slice(2, 10)}`).replace(/-/g, "").slice(0, 16);
+      const orderId = `ORD-${now.getTime()}-${uniquePart}`;
       const pendingOrder = {
         id: orderId,
-        items: cartItems.map((i) => ({ productId: i.productId, name: i.name, price: i.price, qty: i.qty, size: i.size, color: i.color })),
+        items: cartItems.map((i) => ({ productId: i.productId, name: i.name, price: i.price, qty: i.qty, size: i.size, color: i.color, image_url: i.image || null, service_fee: SERVICE_FEE_PER_ITEM })),
+        goods_subtotal: goodsSubtotal,
+        service_fee_per_item: SERVICE_FEE_PER_ITEM,
+        service_fee_total: serviceFeeTotal,
         total,
         customer: { ...form, address: `${form.city}, ${form.street}` },
         status: "awaiting_payment",
@@ -690,6 +870,8 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
     const telegramCaption =
       `💳 НОВЫЙ ОПЛАЧЕННЫЙ ЗАКАЗ ${order.id}\n` +
       `${itemsText}\n` +
+      `Товары: ${formatSum(order.goods_subtotal || 0)} сум\n` +
+      `Услуга: ${formatSum(order.service_fee_total || 0)} сум\n` +
       `Итого: ${formatSum(order.total)} сум\n` +
       `Клиент: ${order.customer?.name || ""}\n` +
       `Телефон 1: ${order.customer?.phone || ""}\n` +
@@ -697,50 +879,72 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
       `Город: ${order.customer?.city || ""}\n` +
       `Улица: ${order.customer?.street || ""}`;
 
+    const productPhotos = [...new Set(order.items.map((item) => {
+      const product = products.find((p) => p.id === Number(item.productId));
+      return product ? (getColorImage(product.color_images, item.color) || product.image_url) : null;
+    }).filter(Boolean))].slice(0, 9);
+
     setSendingPaymentScreenshot(true);
     try {
-      // Сначала Telegram. Если отправка не удалась — заказ в Supabase НЕ создаётся.
-      const telegramResult = await sendTelegramPhoto(config, paymentScreenshot, telegramCaption);
+      // Telegram получает чек и фото купленных товаров одним альбомом.
+      const telegramResult = await sendTelegramOrderMedia(config, paymentScreenshot, productPhotos, telegramCaption);
       if (!telegramResult?.ok) {
         throw new Error(telegramResult?.description || t("Не удалось отправить скриншот оплаты в Telegram."));
       }
 
+      // Заказ создаём только после подтверждения оплаты клиентом,
+      // но остаток НЕ списываем. Списание произойдёт только после
+      // одобрения заказа администратором (переход в "processing").
+      // В таблице orders нет отдельных колонок goods_subtotal,
+      // service_fee_per_item и service_fee_total. Эти данные нужны
+      // только для отображения/Telegram, поэтому в Supabase сохраняем
+      // только поля, которые есть в текущей схеме orders.
       const orderRow = {
-        ...order,
-        status: "processing",
+        id: order.id,
+        items: order.items,
+        total: order.total,
+        customer: order.customer,
+        status: "new",
+        source: order.source || "online",
       };
-      const insertedRows = await sb(config, "orders", { method: "POST", body: orderRow });
-      const inserted = Array.isArray(insertedRows) ? insertedRows[0] : insertedRows;
+
+      // Защита от повторной отправки одного и того же заказа.
+      // Если предыдущая попытка уже успела создать строку, не получаем 409 duplicate key.
+      const existingRows = await sb(config, `orders?id=eq.${encodeURIComponent(order.id)}&select=*`);
+      let inserted = Array.isArray(existingRows) ? existingRows[0] : existingRows;
+
+      if (!inserted) {
+        try {
+          const insertedRows = await sb(config, "orders", {
+            method: "POST",
+            body: orderRow,
+            // UPSERT по primary key: повторная отправка того же заказа
+            // не вызывает 409/23505, а возвращает существующую запись.
+            prefer: "resolution=merge-duplicates,return=representation",
+          });
+          inserted = Array.isArray(insertedRows) ? insertedRows[0] : insertedRows;
+        } catch (e) {
+          // Если параллельный запрос уже создал заказ, перечитываем его вместо повторного INSERT.
+          if (String(e?.message || "").includes("Supabase 409")) {
+            const retryRows = await sb(config, `orders?id=eq.${encodeURIComponent(order.id)}&select=*`);
+            inserted = Array.isArray(retryRows) ? retryRows[0] : retryRows;
+          } else {
+            throw e;
+          }
+        }
+      }
+
       if (!inserted) throw new Error("Заказ не был сохранён. Проверьте INSERT policy для таблицы orders в Supabase.");
 
-      const totals = {};
-      order.items.forEach((i) => { totals[i.productId] = (totals[i.productId] || 0) + i.qty; });
-      await Promise.all(Object.entries(totals).map(async ([id, qty]) => {
-        const p = products.find((x) => x.id === Number(id));
-        if (!p) throw new Error(`Товар с ID ${id} не найден.`);
-        const hasVariants = p.variant_stock && typeof p.variant_stock === "object" && Object.keys(p.variant_stock).length > 0;
-        let variantStock = hasVariants ? { ...p.variant_stock } : null;
-        if (variantStock) {
-          order.items.filter((i) => i.productId === Number(id)).forEach((i) => {
-            const key = variantKey(i.size, i.color);
-            const available = Number(variantStock[key] || 0);
-            if (i.qty > available) throw new Error(`Недостаточно остатка: ${p.name}, ${i.size}, ${i.color}. Доступно: ${available}`);
-            variantStock[key] = available - i.qty;
-          });
-        }
-        const body = variantStock ? { stock: Math.max(0, p.stock - qty), variant_stock: variantStock } : { stock: Math.max(0, p.stock - qty) };
-        const updatedRows = await sb(config, `products?id=eq.${id}`, { method: "PATCH", body });
-        if (Array.isArray(updatedRows) && updatedRows.length === 0) throw new Error(`Не удалось обновить остаток товара ID ${id}. Проверьте UPDATE policy для products в Supabase.`);
-      }));
-
-      setOrders((os) => [{ ...inserted, date: new Date(inserted.created_at || Date.now()) }, ...os]);
-      setProducts((ps) => ps.map((p) => {
-        if (!totals[p.id]) return p;
-        let variantStock = p.variant_stock && typeof p.variant_stock === "object" && Object.keys(p.variant_stock).length ? { ...p.variant_stock } : null;
-        if (variantStock) order.items.filter((i) => i.productId === p.id).forEach((i) => { const k = variantKey(i.size, i.color); variantStock[k] = Math.max(0, Number(variantStock[k] || 0) - i.qty); });
-        return { ...p, stock: Math.max(0, p.stock - totals[p.id]), ...(variantStock ? { variant_stock: variantStock } : {}) };
-      }));
-      setOrderPlaced({ ...inserted, status: "processing" });
+      setOrders((os) => {
+        const withoutCurrent = os.filter((o) => o.id !== inserted.id);
+        return [{ ...inserted, date: new Date(inserted.created_at || Date.now()) }, ...withoutCurrent];
+      });
+      // После успешной отправки чека и сохранения заказа закрываем модалку оплаты.
+      setCart({});
+      setOrderPlaced(null);
+      setCheckoutOpen(false);
+      setForm({ name: "", phone: "", phone2: "", city: "", street: "" });
       removePaymentScreenshot();
     } finally {
       setSendingPaymentScreenshot(false);
@@ -758,7 +962,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
     setProducts((ps) => ps.map((p) => (p.id === id ? { ...p, stock: newStock } : p)));
     if (logOfflineSale) {
       const now = new Date();
-      const row = { id: `OFF-${now.getTime().toString().slice(-8)}`, items: [{ productId: id, name: product.name, price: product.price, qty: 1, size: "—", color: "—" }], total: product.price, customer: null, status: "delivered", source: "offline" };
+      const row = { id: `OFF-${now.getTime().toString().slice(-8)}`, items: [{ productId: id, name: product.name, price: product.price, qty: 1, size: "—", color: "—", image_url: product.image_url || null }], total: product.price, customer: null, status: "delivered", source: "offline" };
       const [inserted] = await sb(config, "orders", { method: "POST", body: row });
       setOrders((os) => [{ ...inserted, date: new Date(inserted.created_at) }, ...os]);
     }
@@ -787,7 +991,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
       await sb(config, `products?id=eq.${g.product.id}`, { method: "PATCH", body });
     }
     const now = new Date();
-    const row = { id: `OFF-${now.getTime().toString().slice(-8)}`, items: items.map((i) => ({ productId: i.productId, name: i.name, price: Number(i.salePrice ?? i.price), originalPrice: Number(i.price), qty: i.qty, size: i.size, color: i.color })), total: offlineTotal, customer: null, status: "delivered", source: "offline", payment: { method: payment.method, cash: Number(payment.cash || 0), card: Number(payment.card || 0) } };
+    const row = { id: `OFF-${now.getTime().toString().slice(-8)}`, items: items.map((i) => ({ productId: i.productId, name: i.name, price: Number(i.salePrice ?? i.price), originalPrice: Number(i.price), qty: i.qty, size: i.size, color: i.color, image_url: i.image || null })), total: offlineTotal, customer: null, status: "delivered", source: "offline", payment: { method: payment.method, cash: Number(payment.cash || 0), card: Number(payment.card || 0) } };
     const insertedRows = await sb(config, "orders", { method: "POST", body: row });
     const inserted = Array.isArray(insertedRows) ? insertedRows[0] : insertedRows;
     if (!inserted) throw new Error("Офлайн продажа не сохранена.");
@@ -937,7 +1141,135 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
     // The database is the source of truth; no localStorage tombstone is needed.
     setOrders((os) => os.filter((o) => o.id !== order.id));
   });
-  const setOrderStatus = (id, status) => withErrorHandling(async () => { await sb(config, `orders?id=eq.${id}`, { method: "PATCH", body: { status } }); setOrders((os) => os.map((o) => (o.id === id ? { ...o, status } : o))); });
+  const setOrderStatus = (id, status) => withErrorHandling(async () => {
+    const order = orders.find((o) => o.id === id);
+    if (!order) throw new Error("Заказ не найден.");
+
+    const oldStatus = order.status;
+    const shouldDeduct = status === "processing" && oldStatus !== "processing" && oldStatus !== "delivered";
+    const shouldRestore = status === "cancelled" && (oldStatus === "processing" || oldStatus === "delivered");
+
+    if (shouldDeduct) {
+      const grouped = {};
+      order.items.forEach((i) => {
+        const p = products.find((x) => x.id === Number(i.productId));
+        if (!p) throw new Error(`Товар с ID ${i.productId} не найден.`);
+        const available = getVariantStock(p, i.size, i.color);
+        if (available !== null && Number(i.qty) > available) {
+          throw new Error(`Недостаточно остатка: ${p.name}, ${i.size}, ${i.color}. Доступно: ${available}`);
+        }
+        if (available === null && Number(i.qty) > Number(p.stock || 0)) {
+          throw new Error(`Недостаточно остатка: ${p.name}. Доступно: ${p.stock}`);
+        }
+        grouped[p.id] = grouped[p.id] || { product: p, items: [] };
+        grouped[p.id].items.push(i);
+      });
+
+      for (const g of Object.values(grouped)) {
+        const p = g.product;
+        const hasVariants = p.variant_stock && typeof p.variant_stock === "object" && Object.keys(p.variant_stock).length > 0;
+        const variantStock = hasVariants ? { ...p.variant_stock } : null;
+        let qty = 0;
+        if (variantStock) {
+          g.items.forEach((i) => {
+            const key = variantKey(i.size, i.color);
+            const available = Number(variantStock[key] || 0);
+            if (Number(i.qty) > available) throw new Error(`Недостаточно остатка: ${p.name}, ${i.size}, ${i.color}. Доступно: ${available}`);
+            variantStock[key] = available - Number(i.qty);
+            qty += Number(i.qty);
+          });
+        } else {
+          qty = g.items.reduce((sum, i) => sum + Number(i.qty), 0);
+        }
+        const body = variantStock
+          ? { stock: Math.max(0, Number(p.stock || 0) - qty), variant_stock: variantStock }
+          : { stock: Math.max(0, Number(p.stock || 0) - qty) };
+        await sb(config, `products?id=eq.${p.id}`, { method: "PATCH", body });
+      }
+    }
+
+    if (shouldRestore) {
+      const grouped = {};
+      order.items.forEach((i) => {
+        const p = products.find((x) => x.id === Number(i.productId));
+        if (!p) return;
+        grouped[p.id] = grouped[p.id] || { product: p, items: [] };
+        grouped[p.id].items.push(i);
+      });
+
+      for (const g of Object.values(grouped)) {
+        const p = g.product;
+        const hasVariants = p.variant_stock && typeof p.variant_stock === "object" && Object.keys(p.variant_stock).length > 0;
+        const variantStock = hasVariants ? { ...p.variant_stock } : null;
+        let qty = 0;
+        if (variantStock) {
+          g.items.forEach((i) => {
+            const key = variantKey(i.size, i.color);
+            variantStock[key] = Number(variantStock[key] || 0) + Number(i.qty);
+            qty += Number(i.qty);
+          });
+        } else {
+          qty = g.items.reduce((sum, i) => sum + Number(i.qty), 0);
+        }
+        const body = variantStock
+          ? { stock: Number(p.stock || 0) + qty, variant_stock: variantStock }
+          : { stock: Number(p.stock || 0) + qty };
+        await sb(config, `products?id=eq.${p.id}`, { method: "PATCH", body });
+      }
+    }
+
+    // В таблице orders используем только существующие поля: status.
+    await sb(config, `orders?id=eq.${encodeURIComponent(id)}`, {
+      method: "PATCH",
+      body: { status },
+    });
+
+    setOrders((os) => os.map((o) => (o.id === id ? { ...o, status } : o)));
+
+    if (shouldDeduct) {
+      const grouped = {};
+      order.items.forEach((i) => {
+        grouped[i.productId] = grouped[i.productId] || { qty: 0, items: [] };
+        grouped[i.productId].qty += Number(i.qty);
+        grouped[i.productId].items.push(i);
+      });
+      setProducts((ps) => ps.map((p) => {
+        const g = grouped[p.id];
+        if (!g) return p;
+        const variantStock = p.variant_stock && typeof p.variant_stock === "object" && Object.keys(p.variant_stock).length
+          ? { ...p.variant_stock } : null;
+        if (variantStock) {
+          g.items.forEach((i) => {
+            const k = variantKey(i.size, i.color);
+            variantStock[k] = Math.max(0, Number(variantStock[k] || 0) - Number(i.qty));
+          });
+        }
+        return { ...p, stock: Math.max(0, Number(p.stock || 0) - g.qty), ...(variantStock ? { variant_stock: variantStock } : {}) };
+      }));
+    }
+
+    if (shouldRestore) {
+      const grouped = {};
+      order.items.forEach((i) => {
+        grouped[i.productId] = grouped[i.productId] || { qty: 0, items: [] };
+        grouped[i.productId].qty += Number(i.qty);
+        grouped[i.productId].items.push(i);
+      });
+      setProducts((ps) => ps.map((p) => {
+        const g = grouped[p.id];
+        if (!g) return p;
+        const variantStock = p.variant_stock && typeof p.variant_stock === "object" && Object.keys(p.variant_stock).length
+          ? { ...p.variant_stock } : null;
+        if (variantStock) {
+          g.items.forEach((i) => {
+            const k = variantKey(i.size, i.color);
+            variantStock[k] = Number(variantStock[k] || 0) + Number(i.qty);
+          });
+        }
+        return { ...p, stock: Number(p.stock || 0) + g.qty, ...(variantStock ? { variant_stock: variantStock } : {}) };
+      }));
+    }
+  });
   const addReview = (productId, review) => withErrorHandling(async () => {
     const [inserted] = await sb(config, "reviews", { method: "POST", body: { product_id: productId, author: review.author, rating: review.rating, comment: review.comment } });
     setReviews((r) => ({ ...r, [productId]: [inserted, ...(r[productId] || [])] }));
@@ -968,12 +1300,36 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
   const now = new Date();
   const monthLabels = lang === "uz" ? ["Yan", "Fev", "Mar", "Apr", "May", "Iyun", "Iyul", "Avg", "Sen", "Okt", "Noy", "Dek"] : MONTH_LABELS;
   const weekdayLabels = lang === "uz" ? ["Ya", "Du", "Se", "Ch", "Pa", "Ju", "Sh"] : WEEKDAY_LABELS;
-  const nonCancelled = orders.filter((o) => o.status !== "cancelled");
+  // В статистику попадают только подтверждённые продажи:
+  // онлайн — после одобрения администратором (processing/delivered),
+  // офлайн — сразу после записи продажи (delivered).
+  const confirmedSales = orders.filter((o) => {
+    if (o.source === "offline") return o.status === "delivered";
+    return o.status === "processing" || o.status === "delivered";
+  });
   const periodOrders = useMemo(() => {
-    if (period === "day") return nonCancelled.filter((o) => isSameDay(new Date(o.date), now));
-    if (period === "week") return nonCancelled.filter((o) => new Date(o.date) >= daysAgo(6));
-    if (period === "month") return nonCancelled.filter((o) => new Date(o.date) >= daysAgo(29));
-    return nonCancelled.filter((o) => new Date(o.date) >= daysAgo(364));
+    if (period === "day") {
+      return confirmedSales.filter((o) =>
+        isSameDay(new Date(o.date), now)
+      );
+    }
+
+    if (period === "week") {
+      return confirmedSales.filter(
+        (o) => new Date(o.date) >= daysAgo(6)
+      );
+    }
+
+    if (period === "month") {
+      return confirmedSales.filter(
+        (o) => new Date(o.date) >= daysAgo(29)
+      );
+    }
+
+    return confirmedSales.filter(
+      (o) => new Date(o.date) >= daysAgo(364)
+    );
+
     // eslint-disable-next-line
   }, [orders, period]);
   const revenue = periodOrders.reduce((s, o) => s + Number(o.total), 0);
@@ -1035,7 +1391,7 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
       {view === "store" ? (
         <StoreView
           products={products} filtered={filtered} category={category} setCategory={setCategory} subcategory={subcategory} setSubcategory={setSubcategory} query={query} setQuery={setQuery}
-          count={count} cartOpen={cartOpen} setCartOpen={setCartOpen} cart={cart} changeQty={changeQty} cartItems={cartItems} total={total}
+          count={count} cartOpen={cartOpen} setCartOpen={setCartOpen} cart={cart} changeQty={changeQty} cartItems={cartItems} total={total} goodsSubtotal={goodsSubtotal} serviceFeeTotal={serviceFeeTotal} serviceFeePerItem={SERVICE_FEE_PER_ITEM}
           checkoutOpen={checkoutOpen} setCheckoutOpen={setCheckoutOpen} orderPlaced={orderPlaced} form={form} setForm={setForm}
           placeOrder={placeOrder} resetOrder={resetOrder} goAdmin={() => setView("admin")} activeProduct={activeProduct} setActiveProduct={setActiveProduct}
           addToCart={addToCart} reviews={reviews} addReview={addReview} setSizeChartOpen={setSizeChartOpen} setStatusLookupOpen={setStatusLookupOpen}
@@ -1050,12 +1406,17 @@ function MainApp({ config, setConfig, products, setProducts, orders, setOrders, 
           setProductPhoto={setProductPhoto} setProductColorPhoto={setProductColorPhoto} saveVariantStock={saveVariantStock} uploadNewProductPhoto={uploadNewProductPhoto} uploadingNewPhoto={uploadingNewPhoto}
           newProductColorImages={newProductColorImages} uploadNewProductColorPhoto={uploadNewProductColorPhoto}
           period={period} setPeriod={setPeriod} revenue={revenue} itemsSold={itemsSold} ordersCount={ordersCount} onlineShare={onlineShare} cashTotal={cashTotal} cardTotal={cardTotal}
-          chartData={chartData} topProducts={topProducts} orders={orders} filteredOrders={filteredOrders} orderFilter={orderFilter} setOrderFilter={setOrderFilter} setOrderStatus={setOrderStatus} deleteOrder={deleteOrder}
+          chartData={chartData} topProducts={topProducts} orders={orders} filteredOrders={filteredOrders} orderFilter={orderFilter} setOrderFilter={setOrderFilter} orderSourceTab={orderSourceTab} setOrderSourceTab={setOrderSourceTab} setOrderStatus={setOrderStatus} deleteOrder={deleteOrder}
           config={config} setConfig={setConfig} notifLog={notifLog} seedDemoOrders={seedDemoOrders} reloadAll={reloadAll} busy={busy} lang={lang} setLang={setLang} t={t}
         />
       )}
       {sizeChartOpen && <SizeChartModal onClose={() => setSizeChartOpen(false)} t={t} />}
       {statusLookupOpen && <OrderStatusModal orders={orders} onClose={() => setStatusLookupOpen(false)} t={t} />}
+
+      {/* Кнопка связи с магазином */}
+      <a href="tel:+998941011441" className="contact-phone" >
+        <PhoneCall size={22} />
+      </a>
 
     </>
   );
@@ -1121,7 +1482,21 @@ function GlobalStyles() {
 
   backdrop-filter: blur(4px);
 }
-      .store-root {
+      .contact-phone {
+         position: fixed; right: 20px; bottom: 20px; z-index: 100;
+         display: flex; align-items: center; gap: 9px; padding: 15px 15px;
+         border-radius: 999px; border: 1px solid #C7A64A; color: #C7A64A;
+         text-decoration: none; font-size: 13px; font-weight: 700;
+         box-shadow: 0 8px 25px rgba(0,0,0,.45);
+         transition: transform .2s ease, box-shadow .2s ease;
+       }
+       .contact-phone:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(199,166,74,.35); }
+       .contact-phone:active { transform: scale(.96); }
+       @media (max-width: 640px) {
+         .contact-phone { right: 15px; bottom: 15px; width: 52px; height: 52px; padding: 0; justify-content: center; border-radius: 50%; }
+         .contact-phone span { display: none; }
+       }
+       .store-root {
         --canvas:#060606;
         --card:#111112;
         --ink:#f7f4ee;
@@ -1618,7 +1993,7 @@ function avgRating(list) { if (!list || list.length === 0) return null; return l
 /* ------------------------------ store view ------------------------------ */
 
 function StoreView(props) {
-  const { lang, setLang, t, products, filtered, category, setCategory, subcategory, setSubcategory, query, setQuery, count, cartOpen, setCartOpen, cart, changeQty, cartItems, total,
+  const { lang, setLang, t, products, filtered, category, setCategory, subcategory, setSubcategory, query, setQuery, count, cartOpen, setCartOpen, cart, changeQty, cartItems, total, goodsSubtotal, serviceFeeTotal, serviceFeePerItem,
     checkoutOpen, setCheckoutOpen, orderPlaced, form, setForm, placeOrder, resetOrder, goAdmin, activeProduct, setActiveProduct,
     addToCart, reviews, addReview, setSizeChartOpen, setStatusLookupOpen, config, confirmPayment, submitPayment, busy, paymentScreenshot, paymentScreenshotPreview, handlePaymentScreenshot, removePaymentScreenshot, sendingPaymentScreenshot } = props;
   const [cartImageOpen, setCartImageOpen] = useState(null);
@@ -1809,7 +2184,11 @@ function StoreView(props) {
           })}
         </div>
         <div className="px-5 py-4 tear-line">
-          <div className="flex items-center justify-between mb-4"><span className="text-sm" style={{ color: "var(--muted)" }}>{t("Итого")}</span><span className="mono text-lg font-medium">{formatSum(total)} сум</span></div>
+          <div className="space-y-2 mb-4">
+            <div className="flex items-center justify-between text-sm"><span style={{ color: "var(--muted)" }}>Товары</span><span className="mono">{formatSum(goodsSubtotal)} сум</span></div>
+            <div className="flex items-center justify-between text-sm"><span style={{ color: "var(--muted)" }}>Услуга ({count} × {formatSum(serviceFeePerItem)} сум)</span><span className="mono">{formatSum(serviceFeeTotal)} сум</span></div>
+            <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: "var(--line)" }}><span className="text-sm">{t("Итого")}</span><span className="mono text-lg font-medium">{formatSum(total)} сум</span></div>
+          </div>
           <button disabled={cartItems.length === 0} onClick={() => setCheckoutOpen(true)} className="btn-primary w-full py-3 text-sm font-medium flex items-center justify-center gap-2">{t("Оформить заказ")} <ChevronRight size={16} /></button>
         </div>
       </div>
@@ -1847,7 +2226,9 @@ function StoreView(props) {
             {!orderPlaced ? (
               <form onSubmit={placeOrder}>
                 <div className="display text-xl font-bold mb-1">{t("Оформление заказа")}</div>
-                <div className="text-sm mb-5" style={{ color: "var(--muted)" }}>{cartItems.reduce((s, i) => s + i.qty, 0)} товара на сумму <span className="mono">{formatSum(total)} сум</span></div>
+                <div className="text-sm mb-5" style={{ color: "var(--muted)" }}>
+                  {cartItems.reduce((s, i) => s + i.qty, 0)} товара · товары {formatSum(goodsSubtotal)} сум + услуга {formatSum(serviceFeeTotal)} сум = <span className="mono">{formatSum(total)} сум</span>
+                </div>
                 <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>{t("Имя")}</label>
                 <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2 mb-3 mt-1 text-sm" placeholder={t("Ваше имя")} />
 
@@ -2285,7 +2666,7 @@ function AdminView(props) {
     setProductPhoto, setProductColorPhoto, saveVariantStock, uploadNewProductPhoto, uploadingNewPhoto,
     newProductColorImages, uploadNewProductColorPhoto,
     period, setPeriod, revenue, itemsSold, ordersCount, avgCheck, onlineShare, cashTotal, cardTotal, chartData, topProducts,
-    orders, filteredOrders, orderFilter, setOrderFilter, setOrderStatus, deleteOrder, config, setConfig, notifLog, seedDemoOrders, reloadAll, busy } = props;
+    orders, filteredOrders, orderFilter, setOrderFilter, orderSourceTab, setOrderSourceTab, setOrderStatus, deleteOrder, config, setConfig, notifLog, seedDemoOrders, reloadAll, busy } = props;
 
   const [testResult, setTestResult] = useState(null);
   const [localCfg, setLocalCfg] = useState(config);
@@ -2295,7 +2676,37 @@ function AdminView(props) {
   const [offlineQuery, setOfflineQuery] = useState("");
   const [variantStockProduct, setVariantStockProduct] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
+
+  // Отдельная защита недельной, месячной и годовой статистики.
+  const [periodPasswordOpen, setPeriodPasswordOpen] = useState(false);
+  const [periodPasswordInput, setPeriodPasswordInput] = useState("");
+  const [periodPasswordError, setPeriodPasswordError] = useState(false);
+  const [unlockedPeriods, setUnlockedPeriods] = useState({});
+
   useEffect(() => setLocalCfg(config), [config]);
+
+  const selectStatsPeriod = (nextPeriod) => {
+    if (nextPeriod === "day" || unlockedPeriods[nextPeriod]) {
+      setPeriod(nextPeriod);
+      return;
+    }
+    setPeriodPasswordInput("");
+    setPeriodPasswordError(false);
+    setPeriodPasswordOpen(nextPeriod);
+  };
+
+  const submitPeriodPassword = () => {
+    const password = STATS_PERIOD_PASSWORDS[periodPasswordOpen];
+    if (password && periodPasswordInput === password) {
+      setUnlockedPeriods((prev) => ({ ...prev, [periodPasswordOpen]: true }));
+      setPeriod(periodPasswordOpen);
+      setPeriodPasswordOpen(false);
+      setPeriodPasswordInput("");
+      setPeriodPasswordError(false);
+    } else {
+      setPeriodPasswordError(true);
+    }
+  };
 
   const offlineSubcategories = useMemo(() => {
     const values = products
@@ -2357,7 +2768,76 @@ function AdminView(props) {
 
       {adminTab === "stats" && (
         <>
-          <div className="flex gap-2 mb-5">{PERIODS.map((p) => <button key={p.id} onClick={() => setPeriod(p.id)} className={`nav-pill px-4 py-1.5 text-sm ${period === p.id ? "active" : ""}`}>{t(p.label)}</button>)}</div>
+          <div className="flex gap-2 mb-5">
+            {PERIODS.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => selectStatsPeriod(p.id)}
+                className={`nav-pill px-4 py-1.5 text-sm ${period === p.id ? "active" : ""}`}
+              >
+                {t(p.label)}
+                {p.id !== "day" && !unlockedPeriods[p.id] && <Lock size={11} className="ml-1.5 inline-block" />}
+              </button>
+            ))}
+          </div>
+
+          {periodPasswordOpen && (
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center px-5"
+              style={{ background: "rgba(0,0,0,.72)", backdropFilter: "blur(4px)" }}
+              onMouseDown={(e) => {
+                if (e.target === e.currentTarget) {
+                  setPeriodPasswordOpen(false);
+                  setPeriodPasswordInput("");
+                  setPeriodPasswordError(false);
+                }
+              }}
+            >
+              <div className="w-full max-w-sm tag-card p-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <Lock size={17} style={{ color: "var(--accent)" }} />
+                  <div className="display text-xl font-bold">
+                    {t(PERIODS.find((x) => x.id === periodPasswordOpen)?.label || "Статистика")}
+                  </div>
+                </div>
+                <div className="text-sm mb-5" style={{ color: "var(--muted)" }}>
+                  Введите пароль для просмотра этого периода
+                </div>
+                <input
+                  autoFocus
+                  type="password"
+                  value={periodPasswordInput}
+                  onChange={(e) => {
+                    setPeriodPasswordInput(e.target.value);
+                    setPeriodPasswordError(false);
+                  }}
+                  onKeyDown={(e) => e.key === "Enter" && submitPeriodPassword()}
+                  placeholder={t("Пароль")}
+                  className="w-full px-3 py-2 mb-2 text-sm"
+                />
+                {periodPasswordError && (
+                  <div className="text-xs mb-3" style={{ color: "var(--accent)" }}>
+                    {t("Неверный пароль")}
+                  </div>
+                )}
+                <div className="flex gap-2 mt-3">
+                  <button
+                    onClick={() => {
+                      setPeriodPasswordOpen(false);
+                      setPeriodPasswordInput("");
+                      setPeriodPasswordError(false);
+                    }}
+                    className="btn-ghost flex-1 py-2.5 text-sm"
+                  >
+                    Отмена
+                  </button>
+                  <button onClick={submitPeriodPassword} className="btn-primary flex-1 py-2.5 text-sm">
+                    {t("Войти")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
             <div className="stat-card p-4"><div className="text-xs mono" style={{ color: "var(--muted)" }}>{t("Выручка")}</div><div className="mono text-lg font-medium mt-1">{formatSum(revenue)} сум</div></div>
             <div className="stat-card p-4"><div className="text-xs mono" style={{ color: "var(--muted)" }}>{t("Заказов")}</div><div className="mono text-lg font-medium mt-1">{ordersCount}</div></div>
@@ -2668,32 +3148,105 @@ function AdminView(props) {
 
       {adminTab === "orders" && (
         <>
-          <div className="flex gap-2 mb-5 flex-wrap"><button onClick={() => setOrderFilter("all")} className={`nav-pill px-4 py-1.5 text-sm ${orderFilter === "all" ? "active" : ""}`}>{t("Все")}</button>{STATUS_ORDER.map((s) => <button key={s} onClick={() => setOrderFilter(s)} className={`nav-pill px-4 py-1.5 text-sm ${orderFilter === s ? "active" : ""}`}>{STATUS_META[s].label}</button>)}</div>
+          <div className="flex gap-2 mb-4 flex-wrap">
+            <button
+              onClick={() => setOrderSourceTab("online")}
+              className={`nav-pill px-4 py-2 text-sm ${orderSourceTab === "online" ? "active" : ""}`}
+            >
+              {t("Заказы с сайта")}
+            </button>
+            <button
+              onClick={() => setOrderSourceTab("offline")}
+              className={`nav-pill px-4 py-2 text-sm ${orderSourceTab === "offline" ? "active" : ""}`}
+            >
+              {t("Заказы из магазина")}
+            </button>
+          </div>
+
+          {orderSourceTab === "online" && (
+            <div className="flex gap-2 mb-5 flex-wrap">
+              <button onClick={() => setOrderFilter("all")} className={`nav-pill px-4 py-1.5 text-sm ${orderFilter === "all" ? "active" : ""}`}>{t("Все")}</button>
+              {STATUS_ORDER.map((s) => (
+                <button key={s} onClick={() => setOrderFilter(s)} className={`nav-pill px-4 py-1.5 text-sm ${orderFilter === s ? "active" : ""}`}>
+                  {STATUS_META[s].label}
+                </button>
+              ))}
+            </div>
+          )}
+
           <div className="space-y-3">
-            {filteredOrders.length === 0 && <div className="text-sm text-center py-10" style={{ color: "var(--muted)" }}>{t("Заказов не найдено")}</div>}
-            {filteredOrders.slice(0, 60).map((o) => {
-              const meta = STATUS_META[o.status]; return (
-                <div key={o.id} className="tag-card p-4">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-2"><span className="mono text-xs" style={{ color: "var(--muted)" }}>№ {o.id}</span><span className="text-xs" style={{ color: "var(--muted)" }}>{new Date(o.date).toLocaleString("ru-RU")}</span><span className="badge" style={{ background: o.source === "online" ? "#C7A64A22" : "#C7A64A22", color: o.source === "online" ? "var(--accent-2)" : "var(--muted)" }}>{o.source === "online" ? t("Сайт") : t("Офлайн")}</span></div>
-                    <span className="badge" style={{ background: meta.color + "22", color: meta.color }}><meta.icon size={12} />{t(meta.label)}</span>
-                  </div>
-                  <div className="text-sm mb-1">{o.items.map((i) => `${i.name}${i.size !== "—" ? ` (${i.size}, ${i.color})` : ""} × ${i.qty}`).join(", ")}</div>
-                  {o.customer && <div className="text-xs mb-2" style={{ color: "var(--muted)" }}>{o.customer.name} · {o.customer.phone} · {o.customer.address}</div>}
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="mono text-sm" style={{ color: "var(--accent)" }}>{formatSum(o.total)} сум</span>
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      {o.source === "online" && STATUS_ORDER.map((s) => <button key={s} onClick={() => setOrderStatus(o.id, s)} className="btn-ghost px-2 py-1 text-xs" style={o.status === s ? { borderColor: meta.color, color: meta.color } : {}}>{STATUS_META[s].label}</button>)}
-                      {o.source === "offline" && (
-                        <button onClick={() => { if (window.confirm(t("Удалить эту запись и вернуть товар на склад?"))) deleteOrder(o); }} className="btn-ghost px-2 py-1 text-xs flex items-center gap-1" style={{ color: "var(--accent)" }}>
-                          <Trash2 size={12} /> {t("Удалить (ошибка)")}
-                        </button>
-                      )}
+            {(() => {
+              const sourceOrders = orders
+                .filter((o) => o.source === orderSourceTab)
+                .filter((o) => orderSourceTab !== "online" || orderFilter === "all" || o.status === orderFilter)
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+              if (sourceOrders.length === 0) {
+                return <div className="text-sm text-center py-10" style={{ color: "var(--muted)" }}>{t("Заказов не найдено")}</div>;
+              }
+
+              return sourceOrders.slice(0, 60).map((o) => {
+                const meta = STATUS_META[o.status] || STATUS_META.delivered;
+                const StatusIcon = meta.icon;
+                return (
+                  <div key={o.id} className="tag-card p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className="mono text-xs" style={{ color: "var(--muted)" }}>№ {o.id}</span>
+                        <span className="text-xs" style={{ color: "var(--muted)" }}>{new Date(o.date).toLocaleString("ru-RU")}</span>
+                        <span className="badge" style={{ background: "#C7A64A22", color: orderSourceTab === "online" ? "var(--accent-2)" : "var(--muted)" }}>
+                          {orderSourceTab === "online" ? t("Сайт") : t("Офлайн")}
+                        </span>
+                      </div>
+                      <span className="badge" style={{ background: meta.color + "22", color: meta.color }}>
+                        <StatusIcon size={12} />{t(meta.label)}
+                      </span>
+                    </div>
+
+                    <div className="flex gap-3 mb-3">
+                      <div className="flex gap-2 overflow-x-auto pb-1 min-w-0">
+                        {o.items?.map((i, idx) => {
+                          const product = products.find((p) => p.id === Number(i.productId));
+                          const image = i.image_url || i.image || (product ? (getColorImage(product.color_images, i.color) || product.image_url) : null);
+                          return (
+                            <div key={`${o.id}-${i.productId}-${i.size}-${i.color}-${idx}`} className="relative shrink-0 w-16 h-20 rounded-lg overflow-hidden border" style={{ borderColor: "var(--line)", background: "var(--line)" }} title={`${i.name}${i.size !== "—" ? ` · ${i.size} · ${i.color}` : ""}`}>
+                              {image ? (
+                                <img src={image} alt={i.name} className="w-full h-full object-cover" loading="lazy" />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center" style={{ color: "var(--muted)" }}>
+                                  <Package size={18} />
+                                </div>
+                              )}
+                              <span className="absolute right-1 bottom-1 min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center text-[10px] font-semibold" style={{ background: "rgba(0,0,0,.72)", color: "#fff" }}>
+                                ×{i.qty}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="text-sm mb-1">{o.items?.map((i) => `${i.name}${i.size !== "—" ? ` (${i.size}, ${i.color})` : ""} × ${i.qty}`).join(", ")}</div>
+                    {o.customer && <div className="text-xs mb-2" style={{ color: "var(--muted)" }}>{o.customer.name} · {o.customer.phone} · {o.customer.address}</div>}
+
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="mono text-sm" style={{ color: "var(--accent)" }}>{formatSum(o.total)} сум</span>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {orderSourceTab === "online" && STATUS_ORDER.map((s) => (
+                          <button key={s} onClick={() => setOrderStatus(o.id, s)} className="btn-ghost px-2 py-1 text-xs" style={o.status === s ? { borderColor: meta.color, color: meta.color } : {}}>
+                            {STATUS_META[s].label}
+                          </button>
+                        ))}
+                        {orderSourceTab === "offline" && (
+                          <button onClick={() => { if (window.confirm(t("Удалить эту запись и вернуть товар на склад?"))) deleteOrder(o); }} className="btn-ghost px-2 py-1 text-xs flex items-center gap-1" style={{ color: "var(--accent)" }}>
+                            <Trash2 size={12} /> {t("Удалить (ошибка)")}
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              });
+            })()}
           </div>
         </>
       )}
