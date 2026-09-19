@@ -77,9 +77,9 @@ const ADMIN_PASSWORD = "parij2024";
 // Пароли для отдельных периодов статистики.
 // Измени значения ниже на свои пароли.
 const STATS_PERIOD_PASSWORDS = {
-  week: "week2024",
-  month: "month2024",
-  year: "year2024",
+  week: "aaa",
+  month: "aaa",
+  year: "aaa",
 };
 const MONTH_LABELS = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
 const WEEKDAY_LABELS = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
