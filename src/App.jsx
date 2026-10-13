@@ -17,7 +17,7 @@ const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 // Telegram Bot Token: @BotFather
 // Telegram Chat ID: ID чата владельца
 // Номер карты: карта, на которую клиент переводит оплату.
-const TELEGRAM_TOKEN = "8913280630:AAHULsvFvcDJHoknMTe3TiXHqlIcQJXP3Jk";
+const TELEGRAM_TOKEN = "8913280630:AAHULsvFvcDJHoknMTe3TiXHqlIcQJXP3Jk"; // Укажи новый токен через настройки после перевыпуска в @BotFather
 const TELEGRAM_CHAT_ID = "[315881723], [807238018]";
 const CARD_NUMBER = "5614688719547795";
 // =============================================================
@@ -72,7 +72,7 @@ const SIZE_CHART = {
   clothing: [{ size: "XS", chest: "84–88", waist: "64–68" }, { size: "S", chest: "88–92", waist: "68–72" }, { size: "M", chest: "92–96", waist: "72–76" }, { size: "L", chest: "96–100", waist: "76–80" }, { size: "XL", chest: "100–104", waist: "80–84" }, { size: "XXL", chest: "104–108", waist: "84–88" }],
   shoes: [{ size: "36", foot: "23.0" }, { size: "37", foot: "23.5" }, { size: "38", foot: "24.5" }, { size: "39", foot: "25.0" }, { size: "40", foot: "25.5" }, { size: "41", foot: "26.5" }, { size: "42", foot: "27.0" }, { size: "43", foot: "27.5" }, { size: "44", foot: "28.5" }, { size: "45", foot: "29.0" }],
 };
-const ADMIN_PASSWORD = "parij2024";
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 // Пароли для отдельных периодов статистики.
 // Измени значения ниже на свои пароли.
@@ -147,6 +147,18 @@ async function saveLocal(key, value) {
 
 const TRANSLATIONS = {
   ru: {
+    "Каталог": "Каталог", "Смотреть каталог": "Смотреть каталог", "Очистить поиск": "Очистить поиск",
+    "Bosh sahifa": "На главную", "Количество": "Количество", "Новый товар": "Новый товар",
+    "Отмена": "Отмена", "Смешанная": "Смешанная", "Подтвердить продажу": "Подтвердить продажу",
+    "Добавить в офлайн корзину": "Добавить в офлайн корзину", "Оплата офлайн продажи": "Оплата офлайн продажи",
+    "Остатки по размерам и цветам": "Остатки по размерам и цветам", "Изменить товар": "Изменить товар",
+    "Вид товара": "Вид товара", "Размеры — можно добавить новые": "Размеры — можно добавить новые",
+    "Например: S, M, L, XL, XXL": "Например: S, M, L, XL, XXL", "Цвета": "Цвета",
+    "Текущая корзина": "Текущая корзина", "Товары в корзине": "Товары в корзине",
+    "История офлайн продаж": "История офлайн продаж", "Размеры": "Размеры", "Изменить": "Изменить",
+    "Количество": "Количество", "Можно выбрать только изображение.": "Можно выбрать только изображение.",
+    "Размер скриншота не должен превышать 10 МБ.": "Размер скриншота не должен превышать 10 МБ.",
+    "Новый товар": "Новый товар", "Товары": "Товары", "Смешанная": "Смешанная",
     "Чёрный": "Чёрный", "Белый": "Белый", "Бежевый": "Бежевый", "Оливковый": "Оливковый", "Бордовый": "Бордовый", "Серый": "Серый",
     "Янв": "Янв", "Фев": "Фев", "Мар": "Мар", "Апр": "Апр", "Май": "Май", "Июн": "Июн", "Июл": "Июл", "Авг": "Авг", "Сен": "Сен", "Окт": "Окт", "Ноя": "Ноя", "Дек": "Дек",
     "Вс": "Вс", "Пн": "Пн", "Вт": "Вт", "Ср": "Ср", "Чт": "Чт", "Пт": "Пт", "Сб": "Сб",
@@ -188,6 +200,17 @@ const TRANSLATIONS = {
     "Фото по цветам": "Фото по цветам",
   },
   uz: {
+    "Каталог": "Katalog", "Смотреть каталог": "Katalogni ko‘rish", "Очистить поиск": "Qidiruvni tozalash",
+    "Bosh sahifa": "Bosh sahifa", "Количество": "Miqdor", "Новый товар": "Yangi mahsulot",
+    "Отмена": "Bekor qilish", "Смешанная": "Aralash", "Подтвердить продажу": "Sotuvni tasdiqlash",
+    "Добавить в офлайн корзину": "Oflayn savatga qo‘shish", "Оплата офлайн продажи": "Oflayn savdo to‘lovi",
+    "Остатки по размерам и цветам": "O‘lcham va ranglar bo‘yicha qoldiq", "Изменить товар": "Mahsulotni tahrirlash",
+    "Вид товара": "Mahsulot turi", "Размеры — можно добавить новые": "O‘lchamlar — yangilarini qo‘shish mumkin",
+    "Например: S, M, L, XL, XXL": "Masalan: S, M, L, XL, XXL", "Цвета": "Ranglar",
+    "Текущая корзина": "Joriy savat", "Товары в корзине": "Savatdagi mahsulotlar",
+    "История офлайн продаж": "Oflayn sotuvlar tarixi", "Размеры": "O‘lchamlar", "Изменить": "Tahrirlash",
+    "Можно выбрать только изображение.": "Faqat rasm tanlash mumkin.",
+    "Размер скриншота не должен превышать 10 МБ.": "Skrinshot hajmi 10 MB dan oshmasligi kerak.",
     "Чёрный": "Qora", "Белый": "Oq", "Бежевый": "Bej", "Оливковый": "Zaytun rang", "Бордовый": "Bordo", "Серый": "Kulrang",
     "Янв": "Yan", "Фев": "Fev", "Мар": "Mar", "Апр": "Apr", "Май": "May", "Июн": "Iyun", "Июл": "Iyul", "Авг": "Avg", "Сен": "Sen", "Окт": "Okt", "Ноя": "Noy", "Дек": "Dek",
     "Вс": "Ya", "Пн": "Du", "Вт": "Se", "Ср": "Ch", "Чт": "Pa", "Пт": "Ju", "Сб": "Sh",
@@ -296,15 +319,80 @@ async function sb(config, path, { method = "GET", body, prefer } = {}) {
   return text ? JSON.parse(text) : null;
 }
 
+async function convertImageToWebP(file, quality = 0.85) {
+  if (!file || !file.type?.startsWith("image/")) {
+    throw new Error("Можно загружать только изображения.");
+  }
+
+  // Если это уже WebP — не перекодируем повторно.
+  if (file.type === "image/webp") return file;
+
+  const objectUrl = URL.createObjectURL(file);
+
+  try {
+    const image = await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("Не удалось прочитать изображение."));
+      img.src = objectUrl;
+    });
+
+    const canvas = document.createElement("canvas");
+    canvas.width = image.naturalWidth || image.width;
+    canvas.height = image.naturalHeight || image.height;
+
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) throw new Error("Браузер не поддерживает обработку изображения.");
+
+    ctx.drawImage(image, 0, 0);
+
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(
+        (result) => result ? resolve(result) : reject(new Error("Не удалось создать WebP.")),
+        "image/webp",
+        quality
+      );
+    });
+
+    const baseName = file.name
+      .replace(/\.[^/.]+$/, "")
+      .replace(/[^a-zA-Z0-9_-]/g, "_")
+      .replace(/^_+|_+$/g, "") || "product";
+
+    return new File(
+      [blob],
+      `${baseName}.webp`,
+      { type: "image/webp", lastModified: Date.now() }
+    );
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
 async function uploadPhoto(config, file) {
-  const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "_")}`;
-  const res = await fetch(`${config.url.replace(/\/$/, "")}/storage/v1/object/product-photos/${filename}`, {
+  // ВСЕ новые фотографии автоматически сохраняются как WebP.
+  const webpFile = await convertImageToWebP(file, 0.85);
+
+  const filename = `${Date.now()}-${crypto.randomUUID()}.webp`;
+  const baseUrl = config.url.replace(/\/$/, "");
+
+  const res = await fetch(`${baseUrl}/storage/v1/object/product-photos/${filename}`, {
     method: "POST",
-    headers: { apikey: config.key, Authorization: `Bearer ${config.key}`, "Content-Type": file.type || "application/octet-stream" },
-    body: file,
+    headers: {
+      apikey: config.key,
+      Authorization: `Bearer ${config.key}`,
+      "Content-Type": "image/webp",
+      "x-upsert": "false",
+    },
+    body: webpFile,
   });
-  if (!res.ok) { const t = await res.text(); throw new Error(t.slice(0, 200) || `Ошибка загрузки ${res.status}`); }
-  return `${config.url.replace(/\/$/, "")}/storage/v1/object/public/product-photos/${filename}`;
+
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(t.slice(0, 300) || `Ошибка загрузки ${res.status}`);
+  }
+
+  return `${baseUrl}/storage/v1/object/public/product-photos/${filename}`;
 }
 
 function getTelegramChatIds(chatIdValue) {
@@ -512,7 +600,8 @@ export default function App() {
     cardNumber: CARD_NUMBER,
   });
   const [configLoading, setConfigLoading] = useState(false);
-  const [lang, setLang] = useState(() => localStorage.getItem("site_lang") || "ru");
+  const [lang, setLangState] = useState(() => localStorage.getItem("site_lang") || "ru");
+  const setLang = (nextLang) => { const safeLang = nextLang === "uz" ? "uz" : "ru"; setLangState(safeLang); try { localStorage.setItem("site_lang", safeLang); } catch { } };
   const t = useMemo(() => makeT(lang), [lang]);
   const [connected, setConnected] = useState(false);
   const [connectError, setConnectError] = useState("");
@@ -1569,16 +1658,25 @@ function GlobalStyles() {
         box-shadow:0 16px 50px rgba(0,0,0,.22);
       }
 
+      /* Единый шрифт для русского и узбекского языков: не допускаем подмену глифов. */
+      .store-root, .store-root *, .store-root *::before, .store-root *::after {
+        font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+      }
       .display {
-        font-family:'Bricolage Grotesque','Inter',sans-serif;
-        letter-spacing:-0.035em;
+        font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+        letter-spacing: -0.025em;
+      }
+      .mono {
+        font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+        letter-spacing: 0.02em;
       }
 
       /* Hero — настоящее фото Paris без блюра и без затемняющего overlay */
       .hero-section {
         position:relative;
         isolation:isolate;
-        min-height:600px;
+        min-height:100vh;
+        min-height:100svh;
         display:flex;
         align-items:center;
         overflow:hidden;
@@ -1644,13 +1742,37 @@ function GlobalStyles() {
         position:relative;
         z-index:2;
         width:100%;
-        padding-top:76px;
-        padding-bottom:76px;
+        padding-top:100px;
+        padding-bottom:100px;
       }
+      .hero-cta {
+        display:inline-flex; align-items:center; gap:12px; margin-top:30px;
+        padding:15px 23px; background:var(--accent); color:#080808;
+        border-radius:999px; font-weight:800; letter-spacing:.02em;
+        transition:transform .25s ease, box-shadow .25s ease;
+        box-shadow:0 10px 35px rgba(212,175,90,.2); text-decoration:none;
+      }
+      .hero-cta:hover { transform:translateY(-3px); box-shadow:0 15px 42px rgba(212,175,90,.32); }
+      .scroll-reveal { opacity:0; transform:translateY(32px); transition:opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
+      .scroll-reveal.is-visible { opacity:1; transform:translateY(0); }
+      .category-showcase { padding:74px 0 28px; }
+      .category-showcase-head { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:24px; }
+      .category-showcase-title { font-size:clamp(27px,4vw,46px); line-height:1; font-weight:750; letter-spacing:-.045em; }
+      .showcase-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+      @media(min-width:768px) { .showcase-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; } }
+      .showcase-card { cursor:pointer; min-width:0; }
+      .showcase-card img { transition:transform .5s cubic-bezier(.2,.7,.2,1); }
+      .showcase-card:hover img { transform:scale(1.045); }
+      .showcase-image { aspect-ratio:3/4; overflow:hidden; border-radius:15px; background:#14120e; }
+      .showcase-image img { width:100%; height:100%; object-fit:cover; display:block; }
+      .showcase-category { padding:34px 0 10px; border-bottom:1px solid rgba(212,175,90,.15); margin-bottom:22px; }
+      .showcase-category:last-child { border-bottom:0; }
+      .catalog-anchor { scroll-margin-top:110px; }
+      @media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity:1; transform:none; transition:none; } * { scroll-behavior:auto !important; } }
 
       @media (max-width: 640px) {
         .hero-section {
-          min-height:560px;
+          min-height:100svh;
           border:0 !important;
           outline:0 !important;
           box-shadow:none !important;
@@ -1662,17 +1784,10 @@ function GlobalStyles() {
           padding-top:64px;
           padding-bottom:64px;
         }
+        .category-showcase { padding-top:52px; }
+        .category-showcase-head { align-items:start; flex-direction:column; }
       }
 
-      /* Все поля ввода в тёмной теме — без белого фона */
-      input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
-      select,
-      textarea {
-        background:#17130C !important;
-        color:#D4AF5A !important;
-        border:1px solid #6F5A2B !important;
-        color-scheme:dark;
-      }
 
       input::placeholder,
       textarea::placeholder {
@@ -1868,6 +1983,7 @@ function GlobalStyles() {
         color:#66666f;
       }
 
+
       input:focus,
       textarea:focus,
       select:focus {
@@ -1977,6 +2093,57 @@ function GlobalStyles() {
         transform:scale(1.035);
       }
 
+      .catalog-page { min-height: calc(100vh - 84px); }
+      .catalog-back { color: var(--accent); transition: opacity .2s; }
+      .catalog-back:hover { opacity: .7; }
+      .catalog-search { width: min(100%, 390px); border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); }
+      .catalog-search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(199,166,74,.08); }
+      .catalog-search input {
+  color: var(--text);
+  min-width: 0;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  ring: 0 !important;
+  background: transparent !important;
+}
+
+.catalog-search input:focus,
+.catalog-search input:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+      .catalog-layout { display: grid; grid-template-columns: 230px minmax(0,1fr); gap: 34px; align-items: start; }
+      .catalog-sidebar { position: sticky; top: 24px; padding: 22px 16px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.018); }
+      .catalog-sidebar-divider { height: 1px; background: var(--line); margin: 13px 0; }
+      .catalog-filter { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; text-align: left; padding: 11px 12px; margin: 2px 0; border-radius: 10px; font-size: 13px; color: var(--muted); transition: color .2s, background .2s; }
+      .catalog-filter span { font-size: 11px; opacity: .65; font-family: ui-monospace, monospace; }
+      .catalog-filter:hover, .catalog-filter.active { color: var(--accent); background: rgba(199,166,74,.09); }
+      .catalog-subfilter { padding-left: 20px; }
+      .catalog-results { min-width: 0; }
+      .catalog-results-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+      .catalog-reset { color: var(--accent); font-size: 12px; }
+      .catalog-product { cursor:pointer; border-radius: 14px; transition: transform .3s, border-color .3s; }
+      .catalog-product:hover { transform: translateY(-4px); border-color: rgba(199,166,74,.42); }
+      .catalog-product-image { height: 210px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+      .catalog-product-image img { width:100%; height:100%; object-fit:cover; transition:transform .45s; }
+      .catalog-product:hover .catalog-product-image img { transform:scale(1.045); }
+      .catalog-stock-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; background:rgba(0,0,0,.22); color:white; }
+      .catalog-stock-overlay span { display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:50%; background:rgba(122,46,46,.92); font-size:34px; line-height:1; }
+      .catalog-stock-overlay small { font-size:10px; letter-spacing:.06em; text-transform:uppercase; }
+      @media (max-width: 900px) { .catalog-layout { grid-template-columns: 190px minmax(0,1fr); gap:18px; } .catalog-product-image { height:180px; } }
+      @media (max-width: 640px) {
+        .catalog-page { padding-top:24px; }
+        .catalog-layout { grid-template-columns: 1fr; gap:20px; }
+        .catalog-sidebar { position:static; padding:16px; }
+        .catalog-sidebar > .catalog-filter { width:auto; display:inline-flex; margin:3px 3px 3px 0; padding:9px 10px; border:1px solid var(--line); }
+        .catalog-subfilter { padding-left:10px; }
+        .catalog-sidebar-divider { display:none; }
+        .catalog-search { width:100%; }
+        .catalog-product-image { height:155px; }
+      }
+
       /* Mobile polish */
       @media (max-width:640px) {
         .tag-card { border-radius:14px; }
@@ -1997,11 +2164,35 @@ function StoreView(props) {
     checkoutOpen, setCheckoutOpen, orderPlaced, form, setForm, placeOrder, resetOrder, goAdmin, activeProduct, setActiveProduct,
     addToCart, reviews, addReview, setSizeChartOpen, setStatusLookupOpen, config, confirmPayment, submitPayment, busy, paymentScreenshot, paymentScreenshotPreview, handlePaymentScreenshot, removePaymentScreenshot, sendingPaymentScreenshot } = props;
   const [cartImageOpen, setCartImageOpen] = useState(null);
+  const [storePage, setStorePage] = useState("home");
 
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".scroll-reveal");
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach((node) => node.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [products]);
+
+  const showcaseCategories = useMemo(() => {
+    const preferred = ["Ветровки", "Рубашки", "Футболки", "Кроссовки", "Куртки", "Брюки", "Джинсы", "Худи / Свитера", "Туфли", "Ботинки", "Сандалии"];
+    const available = [...new Set(products.map((p) => String(p.subcategory || "").trim()).filter(Boolean))];
+    return preferred.filter((name) => available.includes(name)).slice(0, 4).map((name) => ({ name, items: products.filter((p) => String(p.subcategory || "").trim() === name).slice(0, 4) }));
+  }, [products]);
 
   return (
     <>
-      <header className="site-header">
+      {storePage === "home" && <header className="site-header">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
           <div className="logo-wrapper">
             <img
@@ -2013,79 +2204,149 @@ function StoreView(props) {
           <div className="flex items-center gap-1"><button onClick={() => setLang("ru")} className={`nav-pill px-2 py-1 text-[10px] ${lang === "ru" ? "active" : ""}`}>RU</button><button onClick={() => setLang("uz")} className={`nav-pill px-2 py-1 text-[10px] ${lang === "uz" ? "active" : ""}`}>UZ</button></div>
           <div className="flex items-center gap-4">
             <button onClick={() => setStatusLookupOpen(true)} className="text-xs mono hidden sm:flex items-center gap-1" style={{ color: "var(--muted)" }}><PhoneCall size={13} /> {t("Статус заказа")}</button>
+            <button onClick={() => { setStorePage("catalog"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className={`text-xs mono hidden md:block ${storePage === "catalog" ? "catalog-nav-active" : ""}`} style={{ color: storePage === "catalog" ? "var(--accent)" : "var(--muted)" }}>{lang === "uz" ? "Katalog" : "Каталог"}</button>
             <button onClick={goAdmin} className="text-xs mono" style={{ color: "var(--muted)" }}>{t("Панель управления")}</button>
             <button onClick={() => setCartOpen(true)} className="flex items-center gap-2 px-3 py-2 nav-pill"><ShoppingBag size={18} /><span className="mono text-sm">{count}</span></button>
           </div>
         </div>
-      </header>
-      <section className="hero-section">
-        <img
-          className="hero-background-image"
-          src="/hero-paris.png"
-          alt=""
-          aria-hidden="true"
-        />
-        <div className="max-w-6xl mx-auto px-5 hero-content">
-          <div className="mono text-xs tracking-[0.28em] uppercase mb-4" style={{ color: "var(--accent)" }}>
-            {t("Новая коллекция")}
+      </header>}
+      {storePage === "home" && <>
+        <section className="hero-section">
+          <img
+            className="hero-background-image"
+            src="/hero-paris.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="max-w-6xl mx-auto px-5 hero-content">
+            <div className="mono text-xs tracking-[0.28em] uppercase mb-4" style={{ color: "var(--accent)" }}>
+              {t("Новая коллекция")}
+            </div>
+            <h1 className="display text-5xl md:text-7xl font-bold leading-[0.95] max-w-3xl">
+              {t("Одежда и обувь, которую хочется носить каждый день.")}
+            </h1>
+            <p className="mt-5 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "#d0ccc4" }}>
+              {t("Магазин Paris Clothes теперь онлайн — выбирайте, добавляйте в корзину и оформляйте заказ в пару кликов.")}
+            </p>
+            <a className="hero-cta" href="#catalog" onClick={(e) => { e.preventDefault(); setStorePage("catalog"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+              {lang === "uz" ? "Katalogni ko‘rish" : "Смотреть каталог"} <ChevronRight size={19} />
+            </a>
+            <div className="mono text-xs mt-10 tracking-[.22em] uppercase" style={{ color: "rgba(212,175,90,.72)" }}>Paris Clothes · {lang === "uz" ? "Yangi mavsum" : "Новый сезон"}</div>
           </div>
-          <h1 className="display text-5xl md:text-7xl font-bold leading-[0.95] max-w-3xl">
-            {t("Одежда и обувь, которую хочется носить каждый день.")}
-          </h1>
-          <p className="mt-5 max-w-xl text-base md:text-lg leading-relaxed" style={{ color: "#d0ccc4" }}>
-            {t("Магазин Paris Clothes теперь онлайн — выбирайте, добавляйте в корзину и оформляйте заказ в пару кликов.")}
-          </p>
-        </div>
-      </section>
-      <section className="max-w-6xl mx-auto px-5 mb-8">
-        <div className="tear-line pt-6 space-y-4">
+        </section>
+        {showcaseCategories.length > 0 && <section className="category-showcase max-w-6xl mx-auto px-5">
+          <div className="category-showcase-head scroll-reveal">
+            <div><div className="mono text-xs tracking-[.25em] uppercase mb-3" style={{ color: "var(--accent)" }}>{lang === "uz" ? "Tanlangan kolleksiya" : "Избранная коллекция"}</div><h2 className="display category-showcase-title">{lang === "uz" ? "Uslubingizni toping" : "Найдите свой стиль"}</h2></div>
+            <button className="nav-pill px-4 py-3 text-sm" onClick={() => { setStorePage("catalog"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{lang === "uz" ? "Barcha mahsulotlar" : "Все товары"} <ChevronRight size={15} className="inline" /></button>
+          </div>
+          {showcaseCategories.map((group, groupIndex) => <div className="showcase-category scroll-reveal" key={group.name} style={{ transitionDelay: `${Math.min(groupIndex * 80, 240)}ms` }}>
+            <div className="flex items-center justify-between gap-4 mb-5"><div><div className="mono text-xs mb-2" style={{ color: "var(--muted)" }}>0{groupIndex + 1} / COLLECTION</div><h3 className="display text-2xl md:text-3xl font-semibold">{t(group.name)}</h3></div><button className="nav-pill px-4 py-2 text-xs shrink-0" onClick={() => { setCategory(["Кроссовки", "Туфли", "Ботинки", "Сандалии"].includes(group.name) ? "shoes" : "clothing"); setSubcategory(group.name); setQuery(""); setStorePage("catalog"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{lang === "uz" ? "Ko‘proq" : "Смотреть всё"} ↗</button></div>
+            <div className="showcase-grid">{group.items.map((p) => { const [g1, g2] = GRADIENTS[p.id % GRADIENTS.length]; const Icon = p.category === "shoes" ? Footprints : Shirt; return <article key={p.id} className="showcase-card" onClick={() => setActiveProduct(p)}><div className="showcase-image" style={{ background: p.image_url ? "#14120e" : `linear-gradient(135deg,${g1},${g2})` }}>{p.image_url ? <img src={p.image_url} alt={p.name} loading="lazy" /> : <div className="w-full h-full flex items-center justify-center"><Icon size={38} color="#d4af5a" strokeWidth={1.2} /></div>}</div><div className="pt-3"><div className="text-sm md:text-base font-medium truncate">{p.name}</div><div className="mono text-sm mt-1" style={{ color: "var(--accent)" }}>{formatSum(p.price)} сум</div></div></article>; })}</div>
+          </div>)}
+        </section>}
+
+      </>}
+      {storePage === "catalog" && <main className="catalog-page max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+        <div className="catalog-page-heading flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8">
           <div>
-            <div className="mono text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>{t("Категория")}</div>
-            <div className="flex gap-2 flex-wrap">
-              <button onClick={() => { setCategory("all"); setSubcategory("all"); }} className={`nav-pill px-3 py-2 text-xs ${category === "all" ? "active" : ""}`}>{t("Все")}</button>
-              <button onClick={() => { setCategory("clothing"); setSubcategory("all"); }} className={`nav-pill px-3 py-2 text-xs ${category === "clothing" && subcategory === "all" ? "active" : ""}`}>{t("Одежда")}</button>
-              <button onClick={() => { setCategory("shoes"); setSubcategory("all"); }} className={`nav-pill px-3 py-2 text-xs ${category === "shoes" && subcategory === "all" ? "active" : ""}`}>{t("Обувь")}</button>
-              {["Футболки", "Рубашки", "Ветровки", "Куртки", "Брюки", "Джинсы", "Худи / Свитера", "Кроссовки", "Туфли", "Ботинки", "Сандалии"].map((c) => (
-                <button key={c} onClick={() => { setCategory(["Кроссовки", "Туфли", "Ботинки", "Сандалии"].includes(c) ? "shoes" : "clothing"); setSubcategory(c); }} className={`nav-pill px-3 py-2 text-xs ${subcategory === c ? "active" : ""}`}>{t(c)}</button>
-              ))}
+            <button className="catalog-back mono text-xs mb-4" onClick={() => { setStorePage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>← {lang === "uz" ? "Bosh sahifa" : "На главную"}</button>
+            <div className="mono text-xs tracking-[.24em] uppercase mb-3" style={{ color: "var(--accent)" }}>{lang === "uz" ? "PARIS CLOTHES · KOLLEKSIYA" : "PARIS CLOTHES · КОЛЛЕКЦИЯ"}</div>
+            <h1 className="display text-4xl md:text-6xl font-bold">{lang === "uz" ? "Barcha mahsulotlar" : "Все товары"}</h1>
+            <p className="mt-3 text-sm md:text-base" style={{ color: "var(--muted)" }}>{lang === "uz" ? "Uslubingizni toping va yangi obraz yarating." : "Найдите свой стиль и соберите новый образ."}</p>
+          </div>
+          <div className="catalog-search flex items-center gap-3 px-4 py-3">
+            <Search size={19} style={{ color: "var(--accent)" }} />
+            <input
+              type="text"
+              placeholder={t("Поиск товара")}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="!border-0 !outline-none !ring-0 !shadow-none focus:!border-0 focus:!outline-none focus:!ring-0 focus:!shadow-none bg-transparent text-sm w-full"
+            />
+            {query && <button onClick={() => setQuery("")} aria-label="Очистить поиск"><X size={16} /></button>}
+          </div>
+        </div>
+        <div className="catalog-layout">
+          <aside className="catalog-sidebar">
+            <div className="mono text-xs tracking-[.2em] uppercase mb-4" style={{ color: "var(--muted)" }}>{lang === "uz" ? "Kategoriyalar" : "Категории"}</div>
+            <button className={`catalog-filter ${category === "all" && subcategory === "all" ? "active" : ""}`} onClick={() => { setCategory("all"); setSubcategory("all"); }}>{lang === "uz" ? "Barcha mahsulotlar" : "Все товары"} <span>{products.length}</span></button>
+            <div className="catalog-sidebar-divider" />
+            <button className={`catalog-filter ${category === "clothing" && subcategory === "all" ? "active" : ""}`} onClick={() => { setCategory("clothing"); setSubcategory("all"); }}>{t("Одежда")} <span>{products.filter(p => p.category === "clothing").length}</span></button>
+            <button className={`catalog-filter ${category === "shoes" && subcategory === "all" ? "active" : ""}`} onClick={() => { setCategory("shoes"); setSubcategory("all"); }}>{t("Обувь")} <span>{products.filter(p => p.category === "shoes").length}</span></button>
+            {[...new Set(products.map(p => String(p.subcategory || "").trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, lang === "uz" ? "uz" : "ru")).map((c) => {
+              const isShoes = ["Кроссовки", "Туфли", "Ботинки", "Сандалии"].includes(c);
+              const selected = subcategory === c;
+              return <button key={c} className={`catalog-filter catalog-subfilter ${selected ? "active" : ""}`} onClick={() => { setCategory(isShoes ? "shoes" : "clothing"); setSubcategory(c); }}>{t(c)} <span>{products.filter(p => String(p.subcategory || "").trim() === c).length}</span></button>;
+            })}
+          </aside>
+          <section className="catalog-results">
+            <div className="catalog-results-top">
+              <span className="text-sm" style={{ color: "var(--muted)" }}>{lang === "uz" ? "Topildi:" : "Найдено:"} <strong style={{ color: "var(--text)" }}>{filtered.length}</strong> {lang === "uz" ? "mahsulot" : "товаров"}</span>
+              {(category !== "all" || subcategory !== "all" || query) && <button className="catalog-reset" onClick={() => { setCategory("all"); setSubcategory("all"); setQuery(""); }}>{lang === "uz" ? "Tozalash ×" : "Сбросить ×"}</button>}
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+              {filtered.map((p) => {
+                const [g1, g2] = GRADIENTS[p.id % GRADIENTS.length]; const Icon = p.category === "shoes" ? Footprints : Shirt; const outOfStock = p.stock <= 0; const rating = avgRating(reviews[p.id]);
+                return <article key={p.id} className="catalog-product tag-card hoverable overflow-hidden" onClick={() => setActiveProduct(p)}>
+                  <div className="tag-hole" />
+                  <div className="catalog-product-image" style={{ background: p.image_url ? "var(--line)" : `linear-gradient(135deg, ${g1}, ${g2})`, opacity: outOfStock ? .55 : 1 }}>
+                    {p.image_url ? <img src={p.image_url} alt={p.name} loading="lazy" /> : <Icon size={40} color="rgba(199,166,74,.85)" strokeWidth={1.25} />}
+                    {outOfStock && <div className="catalog-stock-overlay"><span>×</span><small>{t("Нет в наличии")}</small></div>}
+                  </div>
+                  <div className="p-3 md:p-4">
+                    <div className="text-sm md:text-base font-medium leading-snug">{p.name}</div>
+                    {p.subcategory && <div className="text-xs mt-1" style={{ color: "var(--muted)" }}>{t(p.subcategory)}</div>}
+                    {rating && <div className="flex items-center gap-1 mt-2"><Stars value={rating} size={11} /><span className="text-xs mono" style={{ color: "var(--muted)" }}>({(reviews[p.id] || []).length})</span></div>}
+                    <div className="flex items-center justify-between gap-2 mt-3"><span className="mono text-sm md:text-base" style={{ color: "var(--accent)" }}>{formatSum(p.price)} сум</span><ChevronRight size={16} style={{ color: "var(--accent)" }} /></div>
+                  </div>
+                </article>;
+              })}
+            </div>
+            {filtered.length === 0 && <div className="text-center py-20" style={{ color: "var(--muted)" }}>{lang === "uz" ? "Mahsulot topilmadi" : `Ничего не найдено${query ? ` по запросу «${query}»` : ""}`}</div>}
+          </section>
+        </div>
+      </main>}
+
+      <footer className="site-footer mt-16" style={{ background: "#080807", color: "#e9e4d9", borderTop: "1px solid rgba(199,166,74,.28)" }}>
+        <div className="max-w-7xl mx-auto px-5 md:px-6 py-10 md:py-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            <div>
+              <div className="display text-2xl font-bold tracking-wide" style={{ color: "#C7A64A" }}>PARIS CLOTHES</div>
+              <p className="text-sm leading-relaxed mt-3 max-w-xs" style={{ color: "#aaa49a" }}>
+                {lang === "uz" ? "Uslub, sifat va har kun uchun zamonaviy obrazlar." : "Стиль, качество и современные образы на каждый день."}
+              </p>
+            </div>
+            <div>
+              <div className="mono text-xs tracking-[.2em] uppercase mb-4" style={{ color: "#C7A64A" }}>{lang === "uz" ? "Aloqa" : "Связаться с нами"}</div>
+              <a href="tel:+998941011441" className="flex items-center gap-3 text-sm hover:text-white transition-colors" style={{ color: "#e9e4d9" }}>
+                <PhoneCall size={17} color="#C7A64A" /> 941011441
+              </a>
+              <a href="https://t.me/paris_clothes_fergana" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-sm mt-3 hover:text-white transition-colors" style={{ color: "#e9e4d9" }}>
+                <Send size={17} color="#C7A64A" /> @paris_clothes_fergana
+              </a>
+            </div>
+            <div>
+              <div className="mono text-xs tracking-[.2em] uppercase mb-4" style={{ color: "#C7A64A" }}>{lang === "uz" ? "Bizning sahifalar" : "Наши страницы"}</div>
+              <a href="https://t.me/fergana_denim" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-sm hover:text-white transition-colors" style={{ color: "#e9e4d9" }}>
+                <Send size={17} color="#C7A64A" /> {lang === "uz" ? "Telegram guruhi" : "Группа Telegram"}
+              </a>
+              <a href="https://instagram.com/paris_clothes__" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-sm mt-3 hover:text-white transition-colors" style={{ color: "#e9e4d9" }}>
+                <span className="text-lg leading-none" style={{ color: "#C7A64A" }}>◎</span> @paris_clothes__
+              </a>
+            </div>
+            <div>
+              <div className="mono text-xs tracking-[.2em] uppercase mb-4" style={{ color: "#C7A64A" }}>{lang === "uz" ? "Do‘kon" : "Магазин"}</div>
+              <button onClick={() => { setStorePage("catalog"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-sm hover:text-white transition-colors" style={{ color: "#e9e4d9" }}>
+                {lang === "uz" ? "Barcha mahsulotlar ↗" : "Все товары ↗"}
+              </button>
             </div>
           </div>
-          <div className="flex items-center gap-2 nav-pill px-3 py-2 w-full sm:w-64">
-            <Search size={15} style={{ color: "var(--muted)" }} />
-            <input type="text" placeholder={t("Поиск товара")} value={query} onChange={(e) => setQuery(e.target.value)} className="bg-transparent border-none outline-none text-sm w-full" style={{ background: "transparent", border: "none" }} />
+          <div className="mt-9 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ borderTop: "1px solid rgba(255,255,255,.1)", color: "#817b70" }}>
+            <span className="mono text-[10px] tracking-[.14em]">© {new Date().getFullYear()} PARIS CLOTHES</span>
+            <span className="text-xs">{lang === "uz" ? "Barcha huquqlar himoyalangan." : "Все права защищены."}</span>
           </div>
         </div>
-      </section>
-      <section className="max-w-6xl mx-auto px-5 pb-24">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filtered.map((p) => {
-            const [g1, g2] = GRADIENTS[p.id % GRADIENTS.length]; const Icon = p.category === "shoes" ? Footprints : Shirt; const outOfStock = p.stock <= 0; const rating = avgRating(reviews[p.id]);
-            return (
-              <div key={p.id} className="tag-card hoverable overflow-hidden" onClick={() => setActiveProduct(p)}>
-                <div className="tag-hole" />
-                <div className="h-36 md:h-44 flex items-center justify-center overflow-hidden relative" style={{ background: p.image_url ? "var(--line)" : `linear-gradient(135deg, ${g1}, ${g2})`, opacity: outOfStock ? 0.5 : 1 }}>
-                  {p.image_url ? <img src={p.image_url} alt={p.name} className="w-full h-full object-cover" /> : <Icon size={40} color="rgba(199,166,74,0.85)" strokeWidth={1.25} />}
-                  {outOfStock && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ background: "rgba(0,0,0,0.16)" }}>
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center" style={{ background: "rgba(122,46,46,0.92)", boxShadow: "0 8px 24px rgba(0,0,0,0.28)" }}>
-                        <X size={38} className="md:hidden" color="white" strokeWidth={3} />
-                        <X size={46} className="hidden md:block" color="white" strokeWidth={3} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="p-3 pt-3">
-                  <div className="text-sm font-medium leading-snug">{p.name}</div>
-                  {rating && <div className="flex items-center gap-1 mt-1"><Stars value={rating} size={11} /><span className="text-xs mono" style={{ color: "var(--muted)" }}>({reviews[p.id].length})</span></div>}
-                  <div className="text-xs mono mt-0.5" style={{ color: outOfStock ? "var(--accent)" : "var(--muted)" }}>{outOfStock ? "Нет в наличии" : `${t("В наличии:")} ${p.stock}`}</div>
-                  <div className="flex items-center justify-between mt-2"><span className="mono text-sm" style={{ color: "var(--accent)" }}>{formatSum(p.price)} сум</span><span className="text-xs" style={{ color: "var(--muted)" }}>{t("Подробнее →")}</span></div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        {filtered.length === 0 && <div className="text-center py-16" style={{ color: "var(--muted)" }}>Ничего не найдено по запросу «{query}»</div>}
-      </section>
+      </footer>
 
       {activeProduct && <ProductModal lang={lang} t={t} product={activeProduct} allProducts={products} onClose={() => setActiveProduct(null)} addToCart={addToCart} reviews={reviews[activeProduct.id] || []} addReview={addReview} openOther={(p) => setActiveProduct(p)} onOpenSizeChart={() => setSizeChartOpen(true)} getQtyInCart={(size, color) => cartItems.filter((i) => i.productId === activeProduct.id && i.size === size && i.color === color).reduce((s, i) => s + i.qty, 0)} />}
 
@@ -2515,7 +2776,7 @@ function OrderStatusModal({ orders, onClose, t }) {
   );
 }
 
-function CustomOfflineItemModal({ onClose, onSubmit }) {
+function CustomOfflineItemModal({ onClose, onSubmit, t }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [qty, setQty] = useState(1);
@@ -2524,32 +2785,32 @@ function CustomOfflineItemModal({ onClose, onSubmit }) {
     <div className="fixed inset-0 z-[85] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}>
       <div className="w-full max-w-sm tag-card p-6 relative" style={{ background: "var(--card)" }}>
         <button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button>
-        <div className="display text-lg font-bold mb-1">Новый товар</div>
+        <div className="display text-lg font-bold mb-1">{t("Новый товар")}</div>
         <div className="text-sm mb-5" style={{ color: "var(--muted)" }}>
           Товар ещё не добавлен на сайт — он будет записан только в эту офлайн-продажу.
         </div>
 
         <div className="mb-3">
-          <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Название товара</label>
+          <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>{t("Название товара")}</label>
           <input autoFocus value={name} onChange={(e) => setName(e.target.value)}
             className="w-full px-3 py-2 mt-1" placeholder="Например: Новая рубашка" />
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-5">
           <div>
-            <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Цена, сум</label>
+            <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>{t("Цена, сум")}</label>
             <input type="number" min="0" value={price} onChange={(e) => setPrice(e.target.value)}
               className="w-full px-3 py-2 mt-1" placeholder="250000" />
           </div>
           <div>
-            <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Количество</label>
+            <label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>{t("Количество")}</label>
             <input type="number" min="1" value={qty} onChange={(e) => setQty(e.target.value)}
               className="w-full px-3 py-2 mt-1" />
           </div>
         </div>
 
         <div className="flex gap-2">
-          <button onClick={onClose} className="btn-ghost flex-1 py-2.5">Отмена</button>
+          <button onClick={onClose} className="btn-ghost flex-1 py-2.5">{t("Отмена")}</button>
           <button
             disabled={!name.trim() || Number(price) <= 0 || Number(qty) < 1}
             onClick={() => onSubmit(name, price, qty)}
@@ -2574,7 +2835,7 @@ function OfflineSaleModal({ product, onClose, onSubmit, t }) {
   const variantStock = getVariantStock(product, size, color);
   const available = variantStock === null ? product.stock : variantStock;
   useEffect(() => { setQty((q) => Math.min(Math.max(1, q), Math.max(1, available))); }, [size, color, available]);
-  return <div className="fixed inset-0 z-[80] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}><div className="w-full max-w-sm tag-card p-6 relative" style={{ background: "var(--card)" }}><button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button><div className="display text-lg font-bold mb-1">Добавить в офлайн корзину</div><div className="text-sm mb-4" style={{ color: "var(--muted)" }}>{product.name}</div><div className="mb-3"><div className="text-xs mono uppercase mb-1.5" style={{ color: "var(--muted)" }}>{t("Размер")}</div><div className="flex flex-wrap gap-2">
+  return <div className="fixed inset-0 z-[80] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}><div className="w-full max-w-sm tag-card p-6 relative" style={{ background: "var(--card)" }}><button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button><div className="display text-lg font-bold mb-1">{t("Добавить в офлайн корзину")}</div><div className="text-sm mb-4" style={{ color: "var(--muted)" }}>{product.name}</div><div className="mb-3"><div className="text-xs mono uppercase mb-1.5" style={{ color: "var(--muted)" }}>{t("Размер")}</div><div className="flex flex-wrap gap-2">
     {sizes.map(s => {
       const sizeStockRaw = color ? getVariantStock(product, s, color) : null;
       const sizeAvailable = sizeStockRaw === null ? Number(product.stock || 0) : Number(sizeStockRaw || 0);
@@ -2611,12 +2872,12 @@ function OfflineSaleModal({ product, onClose, onSubmit, t }) {
   </div></div><div className="mb-3"><div className="text-xs mono uppercase mb-1.5" style={{ color: "var(--muted)" }}>Цвет — {color}</div><div className="flex gap-2">{colors.map(c => <button key={c.name} onClick={() => setColor(c.name)} className={`swatch ${color === c.name ? "selected" : ""}`} style={{ background: c.hex }} title={t(c.name)} />)}</div></div><div className="mb-5"><div className="text-xs mono uppercase mb-1.5" style={{ color: "var(--muted)" }}>Количество · доступно {available}</div><div className="flex items-center gap-2"><button onClick={() => setQty(q => Math.max(1, q - 1))} className="qty-btn btn-ghost"><Minus size={13} /></button><input type="number" min="1" max={available} value={qty} onChange={e => setQty(Math.min(available, Math.max(1, Number(e.target.value) || 1)))} className="w-20 px-3 py-2 text-center" /><button onClick={() => setQty(q => Math.min(available, q + 1))} className="qty-btn btn-ghost"><Plus size={13} /></button></div></div><button disabled={available < 1} onClick={() => onSubmit(size, color, qty)} className="btn-primary w-full py-3 text-sm font-medium disabled:opacity-40">Добавить · {formatSum(product.price * qty)} сум</button></div></div>;
 }
 
-function OfflinePaymentModal({ total, method, setMethod, cash, setCash, card, setCard, onClose, onSubmit, busy }) {
+function OfflinePaymentModal({ total, method, setMethod, cash, setCash, card, setCard, onClose, onSubmit, busy, t }) {
   const remaining = Math.max(0, total - Number(cash || 0) - Number(card || 0));
-  return <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}><div className="w-full max-w-md tag-card p-6 relative" style={{ background: "var(--card)" }}><button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button><div className="display text-xl font-bold mb-1">Оплата офлайн продажи</div><div className="mono text-lg mb-5" style={{ color: "var(--accent)" }}>К оплате: {formatSum(total)} сум</div><div className="grid grid-cols-3 gap-2 mb-5"><button onClick={() => setMethod("cash")} className={`nav-pill py-2 ${method === "cash" ? "active" : ""}`}><Banknote size={14} className="inline mr-1" />Наличные</button><button onClick={() => setMethod("card")} className={`nav-pill py-2 ${method === "card" ? "active" : ""}`}><CreditCard size={14} className="inline mr-1" />Карта</button><button onClick={() => setMethod("mixed")} className={`nav-pill py-2 ${method === "mixed" ? "active" : ""}`}>Смешанная</button></div>{method === "mixed" && <div className="grid grid-cols-2 gap-3 mb-4"><div><label className="text-xs mono" style={{ color: "var(--muted)" }}>Наличные</label><input type="number" min="0" value={cash} onChange={e => setCash(e.target.value)} className="w-full px-3 py-2 mt-1" /></div><div><label className="text-xs mono" style={{ color: "var(--muted)" }}>Карта</label><input type="number" min="0" value={card} onChange={e => setCard(e.target.value)} className="w-full px-3 py-2 mt-1" /></div></div>}{method === "mixed" && <div className="text-xs mb-4" style={{ color: remaining === 0 ? "var(--accent-2)" : "var(--accent)" }}>Осталось распределить: {formatSum(remaining)} сум</div>}<button disabled={busy || (method === "mixed" && Number(cash) + Number(card) !== Number(total))} onClick={onSubmit} className="btn-primary w-full py-3 text-sm font-medium disabled:opacity-40">Подтвердить продажу</button></div></div>;
+  return <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}><div className="w-full max-w-md tag-card p-6 relative" style={{ background: "var(--card)" }}><button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button><div className="display text-xl font-bold mb-1">{"Оплата офлайн продажи"}</div><div className="mono text-lg mb-5" style={{ color: "var(--accent)" }}>К оплате: {formatSum(total)} сум</div><div className="grid grid-cols-3 gap-2 mb-5"><button onClick={() => setMethod("cash")} className={`nav-pill py-2 ${method === "cash" ? "active" : ""}`}><Banknote size={14} className="inline mr-1" />{"Наличные"}</button><button onClick={() => setMethod("card")} className={`nav-pill py-2 ${method === "card" ? "active" : ""}`}><CreditCard size={14} className="inline mr-1" />{"Карта"}</button><button onClick={() => setMethod("mixed")} className={`nav-pill py-2 ${method === "mixed" ? "active" : ""}`}>{"Смешанная"}</button></div>{method === "mixed" && <div className="grid grid-cols-2 gap-3 mb-4"><div><label className="text-xs mono" style={{ color: "var(--muted)" }}>Наличные</label><input type="number" min="0" value={cash} onChange={e => setCash(e.target.value)} className="w-full px-3 py-2 mt-1" /></div><div><label className="text-xs mono" style={{ color: "var(--muted)" }}>Карта</label><input type="number" min="0" value={card} onChange={e => setCard(e.target.value)} className="w-full px-3 py-2 mt-1" /></div></div>}{method === "mixed" && <div className="text-xs mb-4" style={{ color: remaining === 0 ? "var(--accent-2)" : "var(--accent)" }}>Осталось распределить: {formatSum(remaining)} сум</div>}<button disabled={busy || (method === "mixed" && Number(cash) + Number(card) !== Number(total))} onClick={onSubmit} className="btn-primary w-full py-3 text-sm font-medium disabled:opacity-40">{"Подтвердить продажу"}</button></div></div>;
 }
 
-function VariantStockModal({ product, onClose, onSave }) {
+function VariantStockModal({ product, onClose, onSave, t }) {
   const sizes = (product.size || "").split(",").map((x) => x.trim()).filter(Boolean);
   const colors = (product.color || "").split(",").map((x) => x.trim()).filter(Boolean);
   const actualSizes = sizes.length ? sizes : sizesFor(product.category);
@@ -2624,7 +2885,7 @@ function VariantStockModal({ product, onClose, onSave }) {
   const keys = actualSizes.flatMap((size) => actualColors.map((color) => ({ key: variantKey(size, color), size, color })));
   const [values, setValues] = useState(() => Object.fromEntries(keys.map(({ key }) => [key, Number(product.variant_stock?.[key] || 0)])));
   const total = Object.values(values).reduce((s, v) => s + (Number(v) || 0), 0);
-  return <div className="fixed inset-0 z-[95] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}><div className="w-full max-w-2xl tag-card p-6 relative max-h-[85vh] overflow-y-auto" style={{ background: "var(--card)" }}><button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button><div className="display text-xl font-bold mb-1">Остатки по размерам и цветам</div><div className="text-sm mb-5" style={{ color: "var(--muted)" }}>{product.name} · общий остаток после сохранения: {total}</div><div className="grid grid-cols-2 md:grid-cols-3 gap-3">{keys.map(({ key, size, color }) => <div key={key} className="tag-card p-3"><div className="text-sm font-medium">{size}</div><div className="text-xs mb-2" style={{ color: "var(--muted)" }}>{color}</div><input type="number" min="0" value={values[key] ?? 0} onChange={e => setValues(v => ({ ...v, [key]: e.target.value }))} className="w-full px-3 py-2" /></div>)}</div><div className="flex gap-2 mt-5"><button onClick={onClose} className="btn-ghost flex-1 py-2.5">Отмена</button><button onClick={() => onSave(values)} className="btn-primary flex-1 py-2.5">Сохранить остатки</button></div></div></div>;
+  return <div className="fixed inset-0 z-[95] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}><div className="w-full max-w-2xl tag-card p-6 relative max-h-[85vh] overflow-y-auto" style={{ background: "var(--card)" }}><button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button><div className="display text-xl font-bold mb-1">{"Остатки по размерам и цветам"}</div><div className="text-sm mb-5" style={{ color: "var(--muted)" }}>{product.name} · общий остаток после сохранения: {total}</div><div className="grid grid-cols-2 md:grid-cols-3 gap-3">{keys.map(({ key, size, color }) => <div key={key} className="tag-card p-3"><div className="text-sm font-medium">{size}</div><div className="text-xs mb-2" style={{ color: "var(--muted)" }}>{color}</div><input type="number" min="0" value={values[key] ?? 0} onChange={e => setValues(v => ({ ...v, [key]: e.target.value }))} className="w-full px-3 py-2" /></div>)}</div><div className="flex gap-2 mt-5"><button onClick={onClose} className="btn-ghost flex-1 py-2.5">{"Отмена"}</button><button onClick={() => onSave(values)} className="btn-primary flex-1 py-2.5">Сохранить остатки</button></div></div></div>;
 }
 
 function EditProductModal({ product, onClose, onSave, t }) {
@@ -2643,17 +2904,17 @@ function EditProductModal({ product, onClose, onSave, t }) {
   return <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(33,31,28,0.6)" }}>
     <div className="w-full max-w-lg tag-card p-6 relative max-h-[90vh] overflow-y-auto" style={{ background: "var(--card)" }}>
       <button onClick={onClose} className="absolute top-4 right-4"><X size={18} /></button>
-      <div className="display text-xl font-bold mb-5">Изменить товар</div>
+      <div className="display text-xl font-bold mb-5">{t("Изменить товар")}</div>
       <div className="grid grid-cols-2 gap-3">
         <div className="col-span-2"><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Название</label><input value={values.name} onChange={e => set("name", e.target.value)} className="w-full px-3 py-2 mt-1" /></div>
         <div><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Категория</label><select value={values.category} onChange={e => { const category = e.target.value; setValues(v => ({ ...v, category, subcategory: "" })); }} className="w-full px-3 py-2 mt-1"><option value="clothing">{t("Одежда")}</option><option value="shoes">{t("Обувь")}</option></select></div>
-        <div><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Вид товара</label><select value={values.subcategory} onChange={e => set("subcategory", e.target.value)} className="w-full px-3 py-2 mt-1"><option value="">Без типа</option>{(values.category === "clothing" ? clothingSubs : shoeSubs).map(x => <option key={x} value={x}>{t(x)}</option>)}</select></div>
+        <div><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>{t("Вид товара")}</label><select value={values.subcategory} onChange={e => set("subcategory", e.target.value)} className="w-full px-3 py-2 mt-1"><option value="">Без типа</option>{(values.category === "clothing" ? clothingSubs : shoeSubs).map(x => <option key={x} value={x}>{t(x)}</option>)}</select></div>
         <div><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Цена</label><input type="number" value={values.price} onChange={e => set("price", e.target.value)} className="w-full px-3 py-2 mt-1" /></div>
         <div><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Остаток</label><input type="number" min="0" value={values.stock} onChange={e => set("stock", e.target.value)} className="w-full px-3 py-2 mt-1" /></div>
         <div className="col-span-2"><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Размеры — можно добавить новые</label><input value={values.size} onChange={e => set("size", e.target.value)} className="w-full px-3 py-2 mt-1" placeholder={values.category === "shoes" ? "40, 41, 42, 43" : "S, M, L, XL, XXL"} /><div className="text-[11px] mt-1" style={{ color: "var(--muted)" }}>Например: S, M, L, XL, XXL</div></div>
         <div className="col-span-2"><label className="text-xs mono uppercase" style={{ color: "var(--muted)" }}>Цвета</label><input value={values.color} onChange={e => set("color", e.target.value)} className="w-full px-3 py-2 mt-1" placeholder="Чёрный, Белый, Бежевый" /></div>
       </div>
-      <div className="flex gap-2 mt-5"><button onClick={onClose} className="btn-ghost flex-1 py-2.5">Отмена</button><button onClick={() => onSave(product.id, values)} className="btn-primary flex-1 py-2.5">Сохранить</button></div>
+      <div className="flex gap-2 mt-5"><button onClick={onClose} className="btn-ghost flex-1 py-2.5">{t("Отмена")}</button><button onClick={() => onSave(product.id, values)} className="btn-primary flex-1 py-2.5">Сохранить</button></div>
     </div>
   </div>;
 }
@@ -2882,6 +3143,7 @@ function AdminView(props) {
 
       {customOfflineOpen && (
         <CustomOfflineItemModal
+          t={t}
           onClose={() => setCustomOfflineOpen(false)}
           onSubmit={(name, price, qty) => {
             addCustomOfflineItem(name, price, qty);
@@ -2911,7 +3173,7 @@ function AdminView(props) {
                   <ShoppingBag size={17} />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm font-semibold">Текущая корзина</div>
+                  <div className="text-sm font-semibold">{t("Текущая корзина")}</div>
                   <div className="text-xs mono" style={{ color: "var(--muted)" }}>
                     {offlineCount ? `${offlineCount} товар(ов) · ${formatSum(offlineTotal)} сум` : "Корзина пуста"}
                   </div>
@@ -2932,7 +3194,7 @@ function AdminView(props) {
 
           {offlineCartItems.length > 0 && (
             <div className="tag-card p-4 mb-5">
-              <div className="text-sm font-medium mb-3">Товары в корзине</div>
+              <div className="text-sm font-medium mb-3">{t("Товары в корзине")}</div>
               {offlineCartItems.map((i) => {
                 const max = i.variantStock === null ? undefined : i.variantStock;
                 return (
@@ -3063,7 +3325,7 @@ function AdminView(props) {
             })}</div>
 
           <div className="tag-card p-4">
-            <div className="text-sm font-medium mb-4">История офлайн продаж</div>
+            <div className="text-sm font-medium mb-4">{t("История офлайн продаж")}</div>
             {(() => {
               const offlineOrders = orders
                 .filter(o => o.source === "offline")
@@ -3369,7 +3631,7 @@ function AdminView(props) {
                       <button onClick={() => adjustStock(p.id, 1, false)} className="qty-btn btn-ghost"><Plus size={12} /></button>
                     </div>
                     <div className="col-span-1 text-right flex justify-end gap-2">
-                      <button onClick={() => setVariantStockProduct(p)} className="btn-ghost px-2 py-1 text-[10px]">Размеры</button>
+                      <button onClick={() => setVariantStockProduct(p)} className="btn-ghost px-2 py-1 text-[10px]">{t("Размеры")}</button>
                       <button onClick={() => setEditingProduct(p)} className="btn-ghost px-2 py-1 text-[10px]" title="Изменить"><Pencil size={13} /></button>
                       <button onClick={() => deleteProduct(p.id)} style={{ color: "var(--accent)" }}><Trash2 size={15} /></button>
                     </div>
@@ -3404,7 +3666,7 @@ function AdminView(props) {
         </>
       )}
 
-      {variantStockProduct && <VariantStockModal product={variantStockProduct} onClose={() => setVariantStockProduct(null)} onSave={async (map) => { await saveVariantStock(variantStockProduct.id, map); setVariantStockProduct(null); }} />}
+      {variantStockProduct && <VariantStockModal t={t} product={variantStockProduct} onClose={() => setVariantStockProduct(null)} onSave={async (map) => { await saveVariantStock(variantStockProduct.id, map); setVariantStockProduct(null); }} />}
       {editingProduct && <EditProductModal product={editingProduct} t={t} onClose={() => setEditingProduct(null)} onSave={async (id, values) => { await updateProduct(id, values); setEditingProduct(null); }} />}
 
       {adminTab === "settings" && (
